@@ -688,6 +688,108 @@ mro 的 C3 超类线性化算法：&lt;br /&gt;
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/redis/%E4%B8%80%E3%80%81redis%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</guid>
+            <title>一、redis新手入门</title>
+            <link>https://allengx.gitee.io/computer-science/study/redis/%E4%B8%80%E3%80%81redis%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</link>
+            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
+            <category term="Redis" scheme="https://allengx.gitee.io/categories/computer-science/study/redis/" />
+            <pubDate>Sun, 12 Apr 2020 20:46:25 +0800</pubDate>
+            <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;redis简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis简介&#34;&gt;#&lt;/a&gt; Redis 简介&lt;/h1&gt;
+&lt;h2 id=&#34;redis特点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis特点&#34;&gt;#&lt;/a&gt; Redis 特点&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;非关系型数据库&lt;/li&gt;
+&lt;li&gt;速度快&lt;/li&gt;
+&lt;li&gt;key &amp;amp; value（5 种类型） 形式
+&lt;ol&gt;
+&lt;li&gt;字符串&lt;/li&gt;
+&lt;li&gt;列表&lt;/li&gt;
+&lt;li&gt;集合&lt;/li&gt;
+&lt;li&gt;散列表&lt;/li&gt;
+&lt;li&gt;有序集合&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;使用&lt;strong&gt;复制特性&lt;/strong&gt;扩展读性能&lt;/li&gt;
+&lt;li&gt;使用&lt;strong&gt;客户端分片&lt;/strong&gt;扩展写性能&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;分片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分片&#34;&gt;#&lt;/a&gt; 分片&lt;/h3&gt;
+&lt;p&gt;通过将数据划分为多个部分进行分散处理（读写）以提高效率。&lt;/p&gt;
+&lt;h3 id=&#34;与memcached高性能键值缓存服务器相比&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#与memcached高性能键值缓存服务器相比&#34;&gt;#&lt;/a&gt; 与 memcached（高性能键值缓存服务器）相比&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;提供两种不同的写入方式。&lt;/li&gt;
+&lt;li&gt;存储除字符串以外的其他数据结构。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;redis安装-windows&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis安装-windows&#34;&gt;#&lt;/a&gt; Redis 安装 --windows&lt;/h2&gt;
+&lt;h3 id=&#34;下载即可使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下载即可使用&#34;&gt;#&lt;/a&gt; 下载即可使用：&lt;/h3&gt;
+&lt;p&gt;下载地址:&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdGFyY2hpdmUvcmVkaXMvcmVsZWFzZXM=&#34;&gt;https://github.com/microsoftarchive/redis/releases&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;redis使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis使用&#34;&gt;#&lt;/a&gt; redis 使用：&lt;/h2&gt;
+&lt;p&gt;python 下载 redis 三方库&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;pip install redis&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;存取值&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; redis&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; redis&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Redis&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;world&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;   &lt;span class=&#34;token comment&#34;&gt;# key 为 hello value 为 world&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;get&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;   &lt;span class=&#34;token comment&#34;&gt;# 获取 key 对应得 value&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;注意&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python代码中string 取值后是字节类型会带有 b&#39;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;需要在Redis声明中加入 decode_responses&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;效果如下：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; redis&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Redis&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;decode_responses&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;附加特性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#附加特性&#34;&gt;#&lt;/a&gt; 附加特性&lt;/h2&gt;
+&lt;p&gt;redis 服务关闭后的两种保存形式&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;时间点转储：某段时间内，达到某个数量的数据被更新了，才进行一次转储操作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;save &lt;span class=&#34;token number&#34;&gt;900&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;    &lt;span class=&#34;token comment&#34;&gt;#900 秒时间，至少有一条数据更新，则保存到数据文件中&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;save &lt;span class=&#34;token number&#34;&gt;300&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;10&lt;/span&gt;   &lt;span class=&#34;token comment&#34;&gt;#300 秒时间，至少有 10 条数据更新，则保存到数据文件中&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;save &lt;span class=&#34;token number&#34;&gt;60&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;10000&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;#60 秒时间，至少有 10000 条数据更新，则保存到数据文件中&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;2.AOF (Append Only File): 把每个操作记录下来（不记录读操作），在 redis 下次启动时依次执行记录下来的操作复原数据。&lt;/p&gt;
+&lt;h2 id=&#34;redis-存储结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-存储结构&#34;&gt;#&lt;/a&gt; redis 存储结构&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;结构类型&lt;/th&gt;
+&lt;th&gt;存储值&lt;/th&gt;
+&lt;th&gt;结构的读写能力&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;字符串、整数、浮点数&lt;/td&gt;
+&lt;td&gt;能够作用字符串整体及部分、对整数和浮点数的自增、自减操作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;list&lt;/td&gt;
+&lt;td&gt;链表，每个节点均为一个 string&lt;/td&gt;
+&lt;td&gt;操作链表首尾，根据偏移量修改中间部分，读取单个或多个元素，根据值查找并操作对应节点&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;set&lt;/td&gt;
+&lt;td&gt;集合、元素不可重复&lt;/td&gt;
+&lt;td&gt;交、并、差集，增删改查操作。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;hash&lt;/td&gt;
+&lt;td&gt;键值对的无序字典&lt;/td&gt;
+&lt;td&gt;增删改查操作。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;zset&lt;/td&gt;
+&lt;td&gt;有序集合，字符串和浮点数分值的有序映射，排列顺序由分值决定&lt;/td&gt;
+&lt;td&gt;增删改查，通过范围值（range）获取元素。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;redis-的-string&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-string&#34;&gt;#&lt;/a&gt; redis 的 string：&lt;/h3&gt;
+&lt;p&gt;字符串类型，整数和浮点数也会转为字符串。&lt;/p&gt;
+&lt;h4 id=&#34;操作get-set-delete&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作get-set-delete&#34;&gt;#&lt;/a&gt; 操作：get、set、delete&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;world&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;get&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;delete&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;redis-的-list&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-list&#34;&gt;#&lt;/a&gt; redis 的 list：&lt;/h3&gt;
+&lt;p&gt;列表类型中全为 string，加入列表仅支持一个个加入，不支持 None 类型&lt;/p&gt;
+&lt;h4 id=&#34;操作-lpush-rpush-lrange-lindex-lpop-rpop&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作-lpush-rpush-lrange-lindex-lpop-rpop&#34;&gt;#&lt;/a&gt; 操作 lpush、rpush、lrange、lindex、lpop、rpop&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;aaaaa&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lpush&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 首插入&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;rpush&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 尾插入&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lrange&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 范围取值 0 到 最后 即：全部元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lindex&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 读取从左至右的第几个元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lpop&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 左弹出&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;rpop&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 右弹出&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;redis-的-set&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-set&#34;&gt;#&lt;/a&gt; redis 的 set:&lt;/h3&gt;
+&lt;p&gt;集合中全为 string 且不可重复，集合是无序的&lt;/p&gt;
+&lt;h4 id=&#34;操作-sadd-smembers-sisemeber-srem&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作-sadd-smembers-sisemeber-srem&#34;&gt;#&lt;/a&gt; 操作 ： sadd、smembers、sisemeber、srem&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;sadd&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;test&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;6&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 向集合中添加元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;smembers&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;test&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 列出集合中全部元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;sismember&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;test&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 判断集合中是否存在该元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;srem&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;test&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 删除集合中某个元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;redis-的-散列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-散列&#34;&gt;#&lt;/a&gt; redis 的 散列:&lt;/h3&gt;
+&lt;p&gt;键值对的字典&lt;/p&gt;
+&lt;h4 id=&#34;操作-hset-hget-hgetall-hdel&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作-hset-hget-hgetall-hdel&#34;&gt;#&lt;/a&gt; 操作: hset、hget、hgetall、hdel&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hset&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hash&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;key&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;value1&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 关联散列的键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hget&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hash&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;key&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 得到散列的值通过 key&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hgetall&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hash&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 得到散列的所有键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hdel&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hash&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;key&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 通过键去删除散列的键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;redis-的-有序集合&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-有序集合&#34;&gt;#&lt;/a&gt; redis 的 有序集合:&lt;/h3&gt;
+&lt;p&gt;键值对存储的字典，且有序，且不可重复，值必须是浮点数，可以根据 key 访问元素，也可以根据 value 及 value 的排序访问元素&lt;/p&gt;
+&lt;h4 id=&#34;操作zadd-zrange-zrangebyscore-zrem&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作zadd-zrange-zrangebyscore-zrem&#34;&gt;#&lt;/a&gt; 操作：zadd、zrange、zrangebyscore、zrem&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zadd&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;key1&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;999&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 有序集合添加键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zadd&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;key2&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;888&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 有序集合添加键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zadd&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;key3&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;777&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 有序集合添加键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zrange&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; withscores&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 根据位置获取集合中元素 [0,1],withscores=True 表示键值对均获得，不加则只获取 key&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zrangebyscore&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;111&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;787&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; withscores&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 根据值的范围取到多个元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zrem&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;key3&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 根据 key 值来删除元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/redis/%E4%B8%89%E3%80%81redis%E6%8C%87%E4%BB%A4/</guid>
             <title>三、redis指令</title>
             <link>https://allengx.gitee.io/computer-science/study/redis/%E4%B8%89%E3%80%81redis%E6%8C%87%E4%BB%A4/</link>
@@ -1155,108 +1257,6 @@ print(conn.zrange(&amp;quot;zset-key&amp;quot;, 0, -1, withscores=True))  # 输�
 &lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; redis&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; time&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; redis&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Redis&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;decode_responses&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;keys&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;value&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;get&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;keys&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;expire&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;keys&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 设置该键的时间限制 2 秒后过期&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;time&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;sleep&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;get&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;keys&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;keys&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;value2&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;expire&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;keys&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;ttl&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;keys&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 查看还要多少秒过期&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/redis/%E4%B8%80%E3%80%81redis%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</guid>
-            <title>一、redis新手入门</title>
-            <link>https://allengx.gitee.io/computer-science/study/redis/%E4%B8%80%E3%80%81redis%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Redis" scheme="https://allengx.gitee.io/categories/computer-science/study/redis/" />
-            <pubDate>Sun, 12 Apr 2020 20:46:25 +0800</pubDate>
-            <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
-&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;redis简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis简介&#34;&gt;#&lt;/a&gt; Redis 简介&lt;/h1&gt;
-&lt;h2 id=&#34;redis特点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis特点&#34;&gt;#&lt;/a&gt; Redis 特点&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;非关系型数据库&lt;/li&gt;
-&lt;li&gt;速度快&lt;/li&gt;
-&lt;li&gt;key &amp;amp; value（5 种类型） 形式
-&lt;ol&gt;
-&lt;li&gt;字符串&lt;/li&gt;
-&lt;li&gt;列表&lt;/li&gt;
-&lt;li&gt;集合&lt;/li&gt;
-&lt;li&gt;散列表&lt;/li&gt;
-&lt;li&gt;有序集合&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;使用&lt;strong&gt;复制特性&lt;/strong&gt;扩展读性能&lt;/li&gt;
-&lt;li&gt;使用&lt;strong&gt;客户端分片&lt;/strong&gt;扩展写性能&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;分片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分片&#34;&gt;#&lt;/a&gt; 分片&lt;/h3&gt;
-&lt;p&gt;通过将数据划分为多个部分进行分散处理（读写）以提高效率。&lt;/p&gt;
-&lt;h3 id=&#34;与memcached高性能键值缓存服务器相比&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#与memcached高性能键值缓存服务器相比&#34;&gt;#&lt;/a&gt; 与 memcached（高性能键值缓存服务器）相比&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;提供两种不同的写入方式。&lt;/li&gt;
-&lt;li&gt;存储除字符串以外的其他数据结构。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;redis安装-windows&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis安装-windows&#34;&gt;#&lt;/a&gt; Redis 安装 --windows&lt;/h2&gt;
-&lt;h3 id=&#34;下载即可使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下载即可使用&#34;&gt;#&lt;/a&gt; 下载即可使用：&lt;/h3&gt;
-&lt;p&gt;下载地址:&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL21pY3Jvc29mdGFyY2hpdmUvcmVkaXMvcmVsZWFzZXM=&#34;&gt;https://github.com/microsoftarchive/redis/releases&lt;/span&gt;&lt;/p&gt;
-&lt;h2 id=&#34;redis使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis使用&#34;&gt;#&lt;/a&gt; redis 使用：&lt;/h2&gt;
-&lt;p&gt;python 下载 redis 三方库&lt;/p&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;pip install redis&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;存取值&lt;/p&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; redis&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; redis&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Redis&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;world&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;   &lt;span class=&#34;token comment&#34;&gt;# key 为 hello value 为 world&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;get&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;   &lt;span class=&#34;token comment&#34;&gt;# 获取 key 对应得 value&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;注意&lt;/p&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python代码中string 取值后是字节类型会带有 b&#39;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;需要在Redis声明中加入 decode_responses&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;效果如下：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; redis&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Redis&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;decode_responses&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;附加特性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#附加特性&#34;&gt;#&lt;/a&gt; 附加特性&lt;/h2&gt;
-&lt;p&gt;redis 服务关闭后的两种保存形式&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;时间点转储：某段时间内，达到某个数量的数据被更新了，才进行一次转储操作&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;save &lt;span class=&#34;token number&#34;&gt;900&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;    &lt;span class=&#34;token comment&#34;&gt;#900 秒时间，至少有一条数据更新，则保存到数据文件中&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;save &lt;span class=&#34;token number&#34;&gt;300&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;10&lt;/span&gt;   &lt;span class=&#34;token comment&#34;&gt;#300 秒时间，至少有 10 条数据更新，则保存到数据文件中&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;save &lt;span class=&#34;token number&#34;&gt;60&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;10000&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;#60 秒时间，至少有 10000 条数据更新，则保存到数据文件中&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;2.AOF (Append Only File): 把每个操作记录下来（不记录读操作），在 redis 下次启动时依次执行记录下来的操作复原数据。&lt;/p&gt;
-&lt;h2 id=&#34;redis-存储结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-存储结构&#34;&gt;#&lt;/a&gt; redis 存储结构&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;结构类型&lt;/th&gt;
-&lt;th&gt;存储值&lt;/th&gt;
-&lt;th&gt;结构的读写能力&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;string&lt;/td&gt;
-&lt;td&gt;字符串、整数、浮点数&lt;/td&gt;
-&lt;td&gt;能够作用字符串整体及部分、对整数和浮点数的自增、自减操作&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;list&lt;/td&gt;
-&lt;td&gt;链表，每个节点均为一个 string&lt;/td&gt;
-&lt;td&gt;操作链表首尾，根据偏移量修改中间部分，读取单个或多个元素，根据值查找并操作对应节点&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;set&lt;/td&gt;
-&lt;td&gt;集合、元素不可重复&lt;/td&gt;
-&lt;td&gt;交、并、差集，增删改查操作。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;hash&lt;/td&gt;
-&lt;td&gt;键值对的无序字典&lt;/td&gt;
-&lt;td&gt;增删改查操作。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;zset&lt;/td&gt;
-&lt;td&gt;有序集合，字符串和浮点数分值的有序映射，排列顺序由分值决定&lt;/td&gt;
-&lt;td&gt;增删改查，通过范围值（range）获取元素。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&#34;redis-的-string&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-string&#34;&gt;#&lt;/a&gt; redis 的 string：&lt;/h3&gt;
-&lt;p&gt;字符串类型，整数和浮点数也会转为字符串。&lt;/p&gt;
-&lt;h4 id=&#34;操作get-set-delete&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作get-set-delete&#34;&gt;#&lt;/a&gt; 操作：get、set、delete&lt;/h4&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;world&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;get&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;delete&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;redis-的-list&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-list&#34;&gt;#&lt;/a&gt; redis 的 list：&lt;/h3&gt;
-&lt;p&gt;列表类型中全为 string，加入列表仅支持一个个加入，不支持 None 类型&lt;/p&gt;
-&lt;h4 id=&#34;操作-lpush-rpush-lrange-lindex-lpop-rpop&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作-lpush-rpush-lrange-lindex-lpop-rpop&#34;&gt;#&lt;/a&gt; 操作 lpush、rpush、lrange、lindex、lpop、rpop&lt;/h4&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;aaaaa&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lpush&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 首插入&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;rpush&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 尾插入&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lrange&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 范围取值 0 到 最后 即：全部元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lindex&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 读取从左至右的第几个元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lpop&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 左弹出&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;rpop&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 右弹出&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;redis-的-set&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-set&#34;&gt;#&lt;/a&gt; redis 的 set:&lt;/h3&gt;
-&lt;p&gt;集合中全为 string 且不可重复，集合是无序的&lt;/p&gt;
-&lt;h4 id=&#34;操作-sadd-smembers-sisemeber-srem&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作-sadd-smembers-sisemeber-srem&#34;&gt;#&lt;/a&gt; 操作 ： sadd、smembers、sisemeber、srem&lt;/h4&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;sadd&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;test&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;6&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 向集合中添加元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;smembers&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;test&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 列出集合中全部元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;sismember&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;test&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 判断集合中是否存在该元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;srem&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;test&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 删除集合中某个元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;redis-的-散列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-散列&#34;&gt;#&lt;/a&gt; redis 的 散列:&lt;/h3&gt;
-&lt;p&gt;键值对的字典&lt;/p&gt;
-&lt;h4 id=&#34;操作-hset-hget-hgetall-hdel&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作-hset-hget-hgetall-hdel&#34;&gt;#&lt;/a&gt; 操作: hset、hget、hgetall、hdel&lt;/h4&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hset&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hash&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;key&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;value1&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 关联散列的键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hget&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hash&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;key&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 得到散列的值通过 key&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hgetall&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hash&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 得到散列的所有键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hdel&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hash&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;key&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 通过键去删除散列的键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;redis-的-有序集合&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-的-有序集合&#34;&gt;#&lt;/a&gt; redis 的 有序集合:&lt;/h3&gt;
-&lt;p&gt;键值对存储的字典，且有序，且不可重复，值必须是浮点数，可以根据 key 访问元素，也可以根据 value 及 value 的排序访问元素&lt;/p&gt;
-&lt;h4 id=&#34;操作zadd-zrange-zrangebyscore-zrem&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作zadd-zrange-zrangebyscore-zrem&#34;&gt;#&lt;/a&gt; 操作：zadd、zrange、zrangebyscore、zrem&lt;/h4&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zadd&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;key1&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;999&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 有序集合添加键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zadd&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;key2&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;888&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 有序集合添加键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zadd&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;key3&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;777&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 有序集合添加键值对&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zrange&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; withscores&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 根据位置获取集合中元素 [0,1],withscores=True 表示键值对均获得，不加则只获取 key&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zrangebyscore&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;111&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;787&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; withscores&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 根据值的范围取到多个元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zrem&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;zset&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;key3&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 根据 key 值来删除元素&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
-        </item>
-        <item>
             <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/redis/%E4%BA%8C%E3%80%81redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/</guid>
             <title>二、redis发布订阅</title>
             <link>https://allengx.gitee.io/computer-science/study/redis/%E4%BA%8C%E3%80%81redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/</link>
@@ -1552,6 +1552,127 @@ MSET (10 keys): 24709.66 requests per second
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/micro-service/helm/Helm%E7%AE%80%E4%BB%8B&amp;&amp;%E5%8C%85%E7%AE%A1%E7%90%86/</guid>
+            <title>Helm简介&amp;&amp;包管理</title>
+            <link>https://allengx.gitee.io/computer-science/study/micro-service/helm/Helm%E7%AE%80%E4%BB%8B&amp;&amp;%E5%8C%85%E7%AE%A1%E7%90%86/</link>
+            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
+            <category term="微服务" scheme="https://allengx.gitee.io/categories/computer-science/study/micro-service/" />
+            <category term="Helm" scheme="https://allengx.gitee.io/categories/computer-science/study/micro-service/helm/" />
+            <pubDate>Sun, 12 Apr 2020 20:46:25 +0800</pubDate>
+            <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;helm&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#helm&#34;&gt;#&lt;/a&gt; Helm&lt;/h2&gt;
+&lt;p&gt;Helm 是一个 Kubernetes 应用的包管理工具&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Helm：客户端工具，用于为 Kubernetes 应用程序提供 Chart 的创建、打包、发布，并管理本地和远程 Chart 仓库&lt;/li&gt;
+&lt;li&gt;Tiller：服务端，需要部署在 Kubernetes 集群中，接受 Helm 请求，并根据 Chart 生成 Kubernetes 的部署文件（Release），然后交给 Kubernetes 创建应用。并且提供了 Release 的升级、删除、回滚等功能。&lt;/li&gt;
+&lt;li&gt;Chart：Helm 的软件包，Tar 格式。其定义了一组 Kubernetes 资源配置相关的 Yaml 文件。常见的 Chart 大概一下几种：
+&lt;ul&gt;
+&lt;li&gt;service 配置文件（.yaml）&lt;/li&gt;
+&lt;li&gt;deployment 配置文件&lt;/li&gt;
+&lt;li&gt;pv 配置文件&lt;/li&gt;
+&lt;li&gt;pvc 配置文件&lt;/li&gt;
+&lt;li&gt;config-map 配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Repoistory：Helm 的软件仓库，本质是个 Web 服务器，用于存放 Chart 供用户下载，Helm 可以管理多个 Repository。&lt;/li&gt;
+&lt;li&gt;Release：用 helm install 命令在 Kubernetes 集群中部署的 Chart 称为 Release&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://gitee.com/allengx/pic_bed/raw/master/img/image-20200827192009589.png&#34; alt=&#34;image-20200827192009589&#34; /&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/micro-service/istio/Istio%E7%AE%80%E4%BB%8B&amp;&amp;%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</guid>
+            <title>Istio简介&amp;&amp;服务网格</title>
+            <link>https://allengx.gitee.io/computer-science/study/micro-service/istio/Istio%E7%AE%80%E4%BB%8B&amp;&amp;%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
+            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
+            <category term="微服务" scheme="https://allengx.gitee.io/categories/computer-science/study/micro-service/" />
+            <category term="Istio" scheme="https://allengx.gitee.io/categories/computer-science/study/micro-service/istio/" />
+            <pubDate>Sun, 12 Apr 2020 20:46:25 +0800</pubDate>
+            <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;istio-服务网格&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#istio-服务网格&#34;&gt;#&lt;/a&gt; Istio 服务网格&lt;/h2&gt;
+&lt;p&gt;Istio 是运行于分布式应用程序之上的&lt;strong&gt;非侵入式（无代码入侵）服务网格系统&lt;/strong&gt;，为了更好更轻松的解决服务指令问题。&lt;/p&gt;
+&lt;h3 id=&#34;服务网格是什么&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务网格是什么&#34;&gt;#&lt;/a&gt; 服务网格是什么&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;服务网格&lt;/strong&gt;用来描述组成这些应用程序的微服务网络以及它们之间的交互。随着服务网格的规模和复杂性不断的增长，它将会变得越来越难以理解和管理。它的需求包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务发现&lt;/li&gt;
+&lt;li&gt;负载均衡&lt;/li&gt;
+&lt;li&gt;故障恢复&lt;/li&gt;
+&lt;li&gt;度量和监控&lt;/li&gt;
+&lt;li&gt;A/B 测试&lt;/li&gt;
+&lt;li&gt;金丝雀发布&lt;/li&gt;
+&lt;li&gt;流量限制&lt;/li&gt;
+&lt;li&gt;访问控制&lt;/li&gt;
+&lt;li&gt;端到端认证&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://gitee.com/allengx/pic_bed/raw/master/img/image-20200827203851769.png&#34; alt=&#34;image-20200827203851769&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;什么是-istio&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是-istio&#34;&gt;#&lt;/a&gt; 什么是 Istio&lt;/h3&gt;
+&lt;p&gt;一个为微服务提供网络通信的代理。为每个微服务部署一个 Sidecar。然后通过使用其控制平面功能配置和管理 Istio，可以为服务添加 Istio 支持，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP，gRPC，WebSocket 和 TCP 通信的自动负载平衡。&lt;/li&gt;
+&lt;li&gt;通过丰富的路由规则，重试，故障转移和故障注入对流量行为进行精细控制。&lt;/li&gt;
+&lt;li&gt;可插拔的策略层和配置 API，支持访问控制，速率限制和配额。&lt;/li&gt;
+&lt;li&gt;群集内所有流量的自动指标，日志和跟踪，包括群集的入口和出口。&lt;/li&gt;
+&lt;li&gt;通过强大的基于身份的身份验证和授权，确保群集中服务之间的通信安全。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://gitee.com/allengx/pic_bed/raw/master/img/image-20200827204217917.png&#34; alt=&#34;image-20200827204217917&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;总体上看，Istio 的服务网格由数据平面和控制平面两部分组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据平面&lt;/strong&gt;：由一系列作为 Sidecar 部署的智能代理（Envoy）构成。这些代理联合 Mixer，中继，控制所有微服务之间的网络通信。需要注意，还有一些 Envoy 的 hi 独立部署（而非 Sidecar）的，用来实现 Kubernetes Ingress 控制器，Istio 的 Ingress/Egress 网关&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;控制平面&lt;/strong&gt;：负责管理、配置智能代理，实现流量路由；配置 Citadel 实现 TLS 证书管理；配置 Mixers 来应用策略、收集指标帧。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;istio组件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#istio组件&#34;&gt;#&lt;/a&gt; Istio 组件&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Envoy：&lt;/strong&gt; 高性能的代理，具备以下特性&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;动态服务发现&lt;/li&gt;
+&lt;li&gt;负责均衡&lt;/li&gt;
+&lt;li&gt;TLS termination（可将 HTTP 请求伪装成 HTTPS）&lt;/li&gt;
+&lt;li&gt;HTTP/2 和 gRPC 代理&lt;/li&gt;
+&lt;li&gt;断路器&lt;/li&gt;
+&lt;li&gt;健康检查&lt;/li&gt;
+&lt;li&gt;分阶段（基于流百分比）发布&lt;/li&gt;
+&lt;li&gt;故障注入&lt;/li&gt;
+&lt;li&gt;丰富的监控指标&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Pilot：&lt;/strong&gt; 监控器，监测配置、规则、策略的变化并同步给 Envoy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;为 Envoy 提供服务发现&lt;/li&gt;
+&lt;li&gt;为智能路由（AB 测试、金丝雀部署）&lt;/li&gt;
+&lt;li&gt;提供弹性（超时、重试、断路器）&lt;/li&gt;
+&lt;li&gt;分发身份验证策略给 Envoy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mixer：&lt;/strong&gt; 无关平台的组件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;为服务网格提供访问控制策略&lt;/li&gt;
+&lt;li&gt;收集服务中的各项指标&lt;/li&gt;
+&lt;li&gt;对收集的信息进行分析&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Citadel：&lt;/strong&gt; 提供服务与服务之间、或者针对终端用户的身份验证功能，可以加密网络中的流量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiali：&lt;/strong&gt; 提供统一的可视化界面&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/micro-service/docker/Docker%E4%BB%8B%E7%BB%8D&amp;&amp;%E5%AE%B9%E5%99%A8/</guid>
             <title>Docker介绍&amp;&amp;容器</title>
             <link>https://allengx.gitee.io/computer-science/study/micro-service/docker/Docker%E4%BB%8B%E7%BB%8D&amp;&amp;%E5%AE%B9%E5%99%A8/</link>
@@ -1772,38 +1893,6 @@ MSET (10 keys): 24709.66 requests per second
 &lt;p&gt;Compose 是用于定义和运行多容器 Docker 应用程序的工具，简化容器的启动和定义容器之间的关系。&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://gitee.com/allengx/pic_bed/raw/master/img/image-20200824141537909.png&#34; alt=&#34;image-20200824141537909&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;这部分以后再看，相关链接 https://www.bilibili.com/video/av62628434?p=27&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/micro-service/helm/Helm%E7%AE%80%E4%BB%8B&amp;&amp;%E5%8C%85%E7%AE%A1%E7%90%86/</guid>
-            <title>Helm简介&amp;&amp;包管理</title>
-            <link>https://allengx.gitee.io/computer-science/study/micro-service/helm/Helm%E7%AE%80%E4%BB%8B&amp;&amp;%E5%8C%85%E7%AE%A1%E7%90%86/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="微服务" scheme="https://allengx.gitee.io/categories/computer-science/study/micro-service/" />
-            <category term="Helm" scheme="https://allengx.gitee.io/categories/computer-science/study/micro-service/helm/" />
-            <pubDate>Sun, 12 Apr 2020 20:46:25 +0800</pubDate>
-            <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
-&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;helm&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#helm&#34;&gt;#&lt;/a&gt; Helm&lt;/h2&gt;
-&lt;p&gt;Helm 是一个 Kubernetes 应用的包管理工具&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Helm：客户端工具，用于为 Kubernetes 应用程序提供 Chart 的创建、打包、发布，并管理本地和远程 Chart 仓库&lt;/li&gt;
-&lt;li&gt;Tiller：服务端，需要部署在 Kubernetes 集群中，接受 Helm 请求，并根据 Chart 生成 Kubernetes 的部署文件（Release），然后交给 Kubernetes 创建应用。并且提供了 Release 的升级、删除、回滚等功能。&lt;/li&gt;
-&lt;li&gt;Chart：Helm 的软件包，Tar 格式。其定义了一组 Kubernetes 资源配置相关的 Yaml 文件。常见的 Chart 大概一下几种：
-&lt;ul&gt;
-&lt;li&gt;service 配置文件（.yaml）&lt;/li&gt;
-&lt;li&gt;deployment 配置文件&lt;/li&gt;
-&lt;li&gt;pv 配置文件&lt;/li&gt;
-&lt;li&gt;pvc 配置文件&lt;/li&gt;
-&lt;li&gt;config-map 配置文件&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Repoistory：Helm 的软件仓库，本质是个 Web 服务器，用于存放 Chart 供用户下载，Helm 可以管理多个 Repository。&lt;/li&gt;
-&lt;li&gt;Release：用 helm install 命令在 Kubernetes 集群中部署的 Chart 称为 Release&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://gitee.com/allengx/pic_bed/raw/master/img/image-20200827192009589.png&#34; alt=&#34;image-20200827192009589&#34; /&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -2271,95 +2360,6 @@ MSET (10 keys): 24709.66 requests per second
 &lt;p&gt;pass&lt;/p&gt;
 &lt;h4 id=&#34;serviceaccount&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#serviceaccount&#34;&gt;#&lt;/a&gt; ServiceAccount&lt;/h4&gt;
 &lt;p&gt;pass&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/micro-service/istio/Istio%E7%AE%80%E4%BB%8B&amp;&amp;%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</guid>
-            <title>Istio简介&amp;&amp;服务网格</title>
-            <link>https://allengx.gitee.io/computer-science/study/micro-service/istio/Istio%E7%AE%80%E4%BB%8B&amp;&amp;%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="微服务" scheme="https://allengx.gitee.io/categories/computer-science/study/micro-service/" />
-            <category term="Istio" scheme="https://allengx.gitee.io/categories/computer-science/study/micro-service/istio/" />
-            <pubDate>Sun, 12 Apr 2020 20:46:25 +0800</pubDate>
-            <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
-&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;istio-服务网格&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#istio-服务网格&#34;&gt;#&lt;/a&gt; Istio 服务网格&lt;/h2&gt;
-&lt;p&gt;Istio 是运行于分布式应用程序之上的&lt;strong&gt;非侵入式（无代码入侵）服务网格系统&lt;/strong&gt;，为了更好更轻松的解决服务指令问题。&lt;/p&gt;
-&lt;h3 id=&#34;服务网格是什么&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务网格是什么&#34;&gt;#&lt;/a&gt; 服务网格是什么&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;服务网格&lt;/strong&gt;用来描述组成这些应用程序的微服务网络以及它们之间的交互。随着服务网格的规模和复杂性不断的增长，它将会变得越来越难以理解和管理。它的需求包括：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;服务发现&lt;/li&gt;
-&lt;li&gt;负载均衡&lt;/li&gt;
-&lt;li&gt;故障恢复&lt;/li&gt;
-&lt;li&gt;度量和监控&lt;/li&gt;
-&lt;li&gt;A/B 测试&lt;/li&gt;
-&lt;li&gt;金丝雀发布&lt;/li&gt;
-&lt;li&gt;流量限制&lt;/li&gt;
-&lt;li&gt;访问控制&lt;/li&gt;
-&lt;li&gt;端到端认证&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://gitee.com/allengx/pic_bed/raw/master/img/image-20200827203851769.png&#34; alt=&#34;image-20200827203851769&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;什么是-istio&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是-istio&#34;&gt;#&lt;/a&gt; 什么是 Istio&lt;/h3&gt;
-&lt;p&gt;一个为微服务提供网络通信的代理。为每个微服务部署一个 Sidecar。然后通过使用其控制平面功能配置和管理 Istio，可以为服务添加 Istio 支持，包括：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HTTP，gRPC，WebSocket 和 TCP 通信的自动负载平衡。&lt;/li&gt;
-&lt;li&gt;通过丰富的路由规则，重试，故障转移和故障注入对流量行为进行精细控制。&lt;/li&gt;
-&lt;li&gt;可插拔的策略层和配置 API，支持访问控制，速率限制和配额。&lt;/li&gt;
-&lt;li&gt;群集内所有流量的自动指标，日志和跟踪，包括群集的入口和出口。&lt;/li&gt;
-&lt;li&gt;通过强大的基于身份的身份验证和授权，确保群集中服务之间的通信安全。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://gitee.com/allengx/pic_bed/raw/master/img/image-20200827204217917.png&#34; alt=&#34;image-20200827204217917&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;总体上看，Istio 的服务网格由数据平面和控制平面两部分组成：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;数据平面&lt;/strong&gt;：由一系列作为 Sidecar 部署的智能代理（Envoy）构成。这些代理联合 Mixer，中继，控制所有微服务之间的网络通信。需要注意，还有一些 Envoy 的 hi 独立部署（而非 Sidecar）的，用来实现 Kubernetes Ingress 控制器，Istio 的 Ingress/Egress 网关&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;控制平面&lt;/strong&gt;：负责管理、配置智能代理，实现流量路由；配置 Citadel 实现 TLS 证书管理；配置 Mixers 来应用策略、收集指标帧。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;istio组件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#istio组件&#34;&gt;#&lt;/a&gt; Istio 组件&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Envoy：&lt;/strong&gt; 高性能的代理，具备以下特性&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;动态服务发现&lt;/li&gt;
-&lt;li&gt;负责均衡&lt;/li&gt;
-&lt;li&gt;TLS termination（可将 HTTP 请求伪装成 HTTPS）&lt;/li&gt;
-&lt;li&gt;HTTP/2 和 gRPC 代理&lt;/li&gt;
-&lt;li&gt;断路器&lt;/li&gt;
-&lt;li&gt;健康检查&lt;/li&gt;
-&lt;li&gt;分阶段（基于流百分比）发布&lt;/li&gt;
-&lt;li&gt;故障注入&lt;/li&gt;
-&lt;li&gt;丰富的监控指标&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Pilot：&lt;/strong&gt; 监控器，监测配置、规则、策略的变化并同步给 Envoy&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;为 Envoy 提供服务发现&lt;/li&gt;
-&lt;li&gt;为智能路由（AB 测试、金丝雀部署）&lt;/li&gt;
-&lt;li&gt;提供弹性（超时、重试、断路器）&lt;/li&gt;
-&lt;li&gt;分发身份验证策略给 Envoy&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Mixer：&lt;/strong&gt; 无关平台的组件&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;为服务网格提供访问控制策略&lt;/li&gt;
-&lt;li&gt;收集服务中的各项指标&lt;/li&gt;
-&lt;li&gt;对收集的信息进行分析&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Citadel：&lt;/strong&gt; 提供服务与服务之间、或者针对终端用户的身份验证功能，可以加密网络中的流量&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Kiali：&lt;/strong&gt; 提供统一的可视化界面&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
  ]]></description>
         </item>
         <item>
