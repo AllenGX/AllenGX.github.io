@@ -8,13 +8,551 @@
     <author>
       <name>鑫酱(●&#39;◡&#39;●)</name>
     </author>
-    <updated>2020-11-14T05:43:34.000Z</updated>
+    <updated>2020-12-10T09:46:25.000Z</updated>
     <category term="计算机科学" />
     <category term="学习笔记" />
     <category term="Linux" />
     <category term="Redis" />
     <category term="Python" />
     <category term="游戏" />
+    <entry>
+        <id>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%89%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/</id>
+        <title>三、微服务关键技术</title>
+        <link rel="alternate" href="https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%89%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/"/>
+        <content type="html">&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;微服务关键技术&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#微服务关键技术&#34;&gt;#&lt;/a&gt; 微服务关键技术&lt;/h1&gt;
+&lt;h1 id=&#34;服务设计&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务设计&#34;&gt;#&lt;/a&gt; 服务设计&lt;/h1&gt;
+&lt;h3 id=&#34;服务划分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务划分&#34;&gt;#&lt;/a&gt; 服务划分&lt;/h3&gt;
+&lt;p&gt;服务的划分原则：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单一职责：一个服务只处理一件事。&lt;/li&gt;
+&lt;li&gt;服务依赖：对不同层级业务进行划分，避免服务循环依赖。&lt;/li&gt;
+&lt;li&gt;服务自治：考虑如何让团队参与服务的整个生命周期来治理服务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;服务划分策略：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;基于业务功能：组队、工会、聊天等进行业务划分。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于数据模型：读写需求、存储时间、数据类型等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于限界上下文：根据业务的上下文需求对业务进行划分，例如同样是聊天，组队聊天和工会聊天就是两种不同的上下文。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于非功能因素：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可复用性：安全校验，身份验证。&lt;/li&gt;
+&lt;li&gt;资源使用：偏计算、偏 IO...&lt;/li&gt;
+&lt;li&gt;交付频率&lt;/li&gt;
+&lt;li&gt;可伸缩性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;衡量服务划分的合理性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务能否独立交付&lt;/li&gt;
+&lt;li&gt;服务团队规模：人数不能够过多。&lt;/li&gt;
+&lt;li&gt;是否违背服务依赖关系：&lt;strong&gt;核心业务可靠性是否受到非核心业务影响&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;是否满足单一职责&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;服务实现&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务实现&#34;&gt;#&lt;/a&gt; 服务实现&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;资源定义：可以理解为通信时传输的&lt;strong&gt;内容&lt;/strong&gt;以及&lt;strong&gt;格式&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;业务逻辑：对于业务行为的抽象。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;业务模型：对于业务内的角色进行的建模，例如 NPC、技能、场景&lt;/li&gt;
+&lt;li&gt;模型存储：对于模型数据的存储格式和数据库选型。是  &lt;code&gt;json&lt;/code&gt;  还行  &lt;code&gt;str&lt;/code&gt; ，是  &lt;code&gt;mysql&lt;/code&gt;  还是  &lt;code&gt;mongodb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;网关集成：传输协议的出入口，统一的协议转发。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;服务间通信&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务间通信&#34;&gt;#&lt;/a&gt; 服务间通信📲&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;通信方式：
+&lt;ul&gt;
+&lt;li&gt;异步：发送请求后，无需阻塞等待结果&lt;/li&gt;
+&lt;li&gt;同步：发送请求后，需要阻塞等待结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;通信机制&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#通信机制&#34;&gt;#&lt;/a&gt; 通信机制&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;同步通信机制：RPC 相比于 REST 性能上更加优。
+&lt;ul&gt;
+&lt;li&gt;RPC（远程过程调用）：通过发送二进制数据，实现调用远端接口&lt;/li&gt;
+&lt;li&gt;REST（表述性状态转移）：以 HTTP 协议为基础，把结果定义为资源的数据传输。
+&lt;ul&gt;
+&lt;li&gt;资源：信息类的实体对象&lt;/li&gt;
+&lt;li&gt;表述：资源在特定时机下的状态&lt;/li&gt;
+&lt;li&gt;状态转移：客户端通过和服务器交互&lt;strong&gt;资源&lt;/strong&gt;的&lt;strong&gt;表述&lt;/strong&gt;来使得服务端实现&lt;strong&gt;状态转移&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;统一接口：REST 基于 HTTP 的四个基本操作：GET、POST、PUT、DELETE。
+&lt;ul&gt;
+&lt;li&gt;GET：获取资源&lt;/li&gt;
+&lt;li&gt;POST：创建资源&lt;/li&gt;
+&lt;li&gt;PUT：更新资源&lt;/li&gt;
+&lt;li&gt;DELETE：删除资源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;异步通信机制
+&lt;ul&gt;
+&lt;li&gt;基于消息的异步协作 —— 消息队列
+&lt;ul&gt;
+&lt;li&gt;持久性：消息可能保存在内存、磁盘或者数据库&lt;/li&gt;
+&lt;li&gt;排队标准：先进先出...&lt;/li&gt;
+&lt;li&gt;安全策略：权限隔离&lt;/li&gt;
+&lt;li&gt;清理策略&lt;/li&gt;
+&lt;li&gt;处理通知：消息处理完成后需要通知回复请求方&lt;/li&gt;
+&lt;li&gt;访问形式：
+&lt;ul&gt;
+&lt;li&gt;拉模式（消费者定期拉取）：处理非及时任务，性能平滑，常用于解耦。&lt;/li&gt;
+&lt;li&gt;推模式（生产者主动通知）：处理及时任务，耦合度较高，容易出现峰值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;消息队列的优点：
+&lt;ul&gt;
+&lt;li&gt;服务间解耦&lt;/li&gt;
+&lt;li&gt;异步通信&lt;/li&gt;
+&lt;li&gt;消息持久化及容灾恢复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;消息队列的缺点：
+&lt;ul&gt;
+&lt;li&gt;提高系统复杂度&lt;/li&gt;
+&lt;li&gt;对于平台或者协议存在依赖&lt;/li&gt;
+&lt;li&gt;使用、维护成本高&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;服务设计模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务设计模式&#34;&gt;#&lt;/a&gt; 服务设计模式&lt;/h3&gt;
+&lt;h4 id=&#34;链式模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#链式模式&#34;&gt;#&lt;/a&gt; 链式模式&lt;/h4&gt;
+&lt;p&gt;根据业务内数据的流向来拆分服务（面向过程拆分）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;缺点：链路越长，越影响响应时间和成功率。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;聚合器模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#聚合器模式&#34;&gt;#&lt;/a&gt; 聚合器模式&lt;/h4&gt;
+&lt;p&gt;类似服务转发中心，对所有服务进行转发。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：可以让代码更加清晰，快速了解调用流程。&lt;/li&gt;
+&lt;li&gt;缺点：容易出现性能瓶颈和单点故障，且无法保证数据一致性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;事件溯源模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事件溯源模式&#34;&gt;#&lt;/a&gt; 事件溯源模式&lt;/h4&gt;
+&lt;p&gt;以消息队列为核心的事件驱动模型，结构类似聚合模式，区别在于用事件同步增量，而非最终状态&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：明确的修改记录，支持回退。&lt;/li&gt;
+&lt;li&gt;缺点：强一致性系统不适用，同步增量会出现一步错步步错的问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;cqrs读写分离模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cqrs读写分离模式&#34;&gt;#&lt;/a&gt; CQRS（读写分离）模式&lt;/h4&gt;
+&lt;p&gt;提供多个数据源（数据库），其中一部分负责数据修改和同步其他数据源，另一部分负责提供数据读取服务。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：扩展和可用性较好。&lt;/li&gt;
+&lt;li&gt;缺点：实现成本高，无法保证数据的强一致。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;服务接入&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务接入&#34;&gt;#&lt;/a&gt; 服务接入&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;边缘服务接入（第三方应用）&lt;/li&gt;
+&lt;li&gt;API 网关（客户端对于服务的调用）
+&lt;ul&gt;
+&lt;li&gt;请求路由：定位需要提供的服务来源。&lt;/li&gt;
+&lt;li&gt;协议转换：把外部不统一的请求转化为内部系统的统一格式。&lt;/li&gt;
+&lt;li&gt;公共功能：限流、认证、安全等公共功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;数据一致性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数据一致性&#34;&gt;#&lt;/a&gt; 数据一致性&lt;/h3&gt;
+&lt;h4 id=&#34;三阶段提交策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三阶段提交策略&#34;&gt;#&lt;/a&gt; 三阶段提交策略&lt;/h4&gt;
+&lt;p&gt;发起修改者在进行修改之前，需要通知被修改方（避免阻塞引入超时机制）&lt;/p&gt;
+&lt;p&gt;锁住资源避免外界脏改（保证原子操作）。&lt;/p&gt;
+&lt;p&gt;在操作完成后释放锁，失败则回滚操作。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;发起事务操作申请&lt;/li&gt;
+&lt;li&gt;预提交&lt;/li&gt;
+&lt;li&gt;提交&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;tcctry-cancel-confirm模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#tcctry-cancel-confirm模式&#34;&gt;#&lt;/a&gt; TCC (Try-Cancel-Confirm) 模式&lt;/h4&gt;
+&lt;p&gt;操作补偿模式，尝试去执行，失败了就回滚。&lt;/p&gt;
+&lt;h4 id=&#34;sagas模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sagas模式&#34;&gt;#&lt;/a&gt; Sagas 模式&lt;/h4&gt;
+&lt;p&gt;和 TCC 类型，用于处理较长流程的事务，其中某一个子任务失败都会终止任务，触发回滚。&lt;/p&gt;
+&lt;h3 id=&#34;身份认证与鉴权&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#身份认证与鉴权&#34;&gt;#&lt;/a&gt; 身份认证与鉴权&lt;/h3&gt;
+&lt;p&gt;前两种方式的校验存储都是存放在服务器，第三种则是存放在客户端。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分布式 Session：把身份认证的 Session 缓存在 redis 等缓存中，减少查表压力。&lt;/li&gt;
+&lt;li&gt;单点登录（SSO）：单点授权 Token，提供访问权限。&lt;/li&gt;
+&lt;li&gt;无状态 Token：用户第一次访问时校验身份，客户端本地保存 Token（Cookie）, 下次校验直接发送本地 Cookie。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;服务治理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务治理&#34;&gt;#&lt;/a&gt; 服务治理&lt;/h2&gt;
+&lt;h3 id=&#34;注册发现&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#注册发现&#34;&gt;#&lt;/a&gt; 注册发现&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;手动注册实例地址的成本高&lt;/li&gt;
+&lt;li&gt;无法识别服务器重启后网络地址变化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;服务注册发现的核心机制&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务注册发现的核心机制&#34;&gt;#&lt;/a&gt; 服务注册发现的核心机制&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;将实例信息注册至注册中心&lt;/li&gt;
+&lt;li&gt;获取服务器实例列表&lt;/li&gt;
+&lt;li&gt;实现服务间的通信&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;服务发现方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务发现方式&#34;&gt;#&lt;/a&gt; 服务发现方式&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端发现（服务发现逻辑再客户端）
+&lt;ul&gt;
+&lt;li&gt;服务提供者实例向注册中心注册地址信息。&lt;/li&gt;
+&lt;li&gt;客户端通过查询注册中心，获取服务提供者地址列表。&lt;/li&gt;
+&lt;li&gt;客户端基于获取的地址，向服务提供者发起请求。&lt;/li&gt;
+&lt;li&gt;优点：响应速度快。&lt;/li&gt;
+&lt;li&gt;缺点：实现较为复杂。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;服务端发现（服务发现逻辑再服务端）
+&lt;ul&gt;
+&lt;li&gt;服务提供者实例向注册中心注册地址信息。&lt;/li&gt;
+&lt;li&gt;客户端向服务发送请求，请求通过服务器的负载均衡。&lt;/li&gt;
+&lt;li&gt;负载均衡根据服务注册中心查找对应的服务地址。&lt;/li&gt;
+&lt;li&gt;负载均衡根据服务地址把请求进行转发。&lt;/li&gt;
+&lt;li&gt;优点：客户端的复杂度降低。&lt;/li&gt;
+&lt;li&gt;缺点：响应速度慢。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;负载均衡&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#负载均衡&#34;&gt;#&lt;/a&gt; 负载均衡&lt;/h3&gt;
+&lt;h4 id=&#34;负载均衡实现方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#负载均衡实现方式&#34;&gt;#&lt;/a&gt; 负载均衡实现方式&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;服务端负载均衡（负载均衡逻辑再服务器实现）
+&lt;ul&gt;
+&lt;li&gt;好处：客户端无感知。&lt;/li&gt;
+&lt;li&gt;坏处：系统可用性高度依赖负载均衡的可用性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;客户端负载均衡（负载均衡逻辑再客户端实现）
+&lt;ul&gt;
+&lt;li&gt;好处：性能较好。&lt;/li&gt;
+&lt;li&gt;坏处：不同的 C/S 结构，对于不同编程语言的适配较为困难。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;负载均衡策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#负载均衡策略&#34;&gt;#&lt;/a&gt; 负载均衡策略&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;随机策略：随机分配到不同的机器。&lt;/li&gt;
+&lt;li&gt;轮询策略：根据一定的顺序分配到不同的机器。&lt;/li&gt;
+&lt;li&gt;权重策略：根据各个机器的分配权重，对请求进行分流。&lt;/li&gt;
+&lt;li&gt;响应时间策略：根据各个服务器的响应时间进行动态变更。&lt;/li&gt;
+&lt;li&gt;会话保持类型的策略（长连接，有状态的情况）：
+&lt;ul&gt;
+&lt;li&gt;源地址 hash：通过 ip 进行固定的 hash&lt;/li&gt;
+&lt;li&gt;Cookie 识别：在返回结果中加入特定字符串。&lt;/li&gt;
+&lt;li&gt;基于 session：再负载均衡器中对历史链路进行缓存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;配置管理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#配置管理&#34;&gt;#&lt;/a&gt; 配置管理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;基础设施的连接信息&lt;/li&gt;
+&lt;li&gt;协作服务的地址信息&lt;/li&gt;
+&lt;li&gt;业务行为的配置参数&lt;/li&gt;
+&lt;li&gt;与特性相关的信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在代码中硬编码配置信息也是一种选择，不过往往维护成本和可读性就会有所下降。而且管理起来比较困难，改动也不太可控。&lt;/p&gt;
+&lt;h4 id=&#34;微服务配置管理的挑战&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#微服务配置管理的挑战&#34;&gt;#&lt;/a&gt; 微服务配置管理的挑战&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;对于涉及多个服务的配置信息的变更，如何有效的一次性完成配置。&lt;/li&gt;
+&lt;li&gt;对于某个服务的多个实例的配置信息的变更，如何有效的一次性完成配置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;微服务的配置管理策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#微服务的配置管理策略&#34;&gt;#&lt;/a&gt; 微服务的配置管理策略&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;去中心式化的配置管理：各个服务团队单独维护自己服务的配置信息，对于服务较少的情况下较为有效，对于团队成员的能力和责任有一定要求。&lt;/li&gt;
+&lt;li&gt;集中化的配置管理：转门的团队和人员，对所有服务的配置进行统一管理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;多实例的配置信息变更流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#多实例的配置信息变更流程&#34;&gt;#&lt;/a&gt; 多实例的配置信息变更流程&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;配置管理员修改配置提交到配置中心。&lt;/li&gt;
+&lt;li&gt;配置中心检测配置信息变更后对其中一个实例进行配置变更请求。&lt;/li&gt;
+&lt;li&gt;实例收到配置变更请求后，开始配置更新。&lt;/li&gt;
+&lt;li&gt;更新完成后把更新请求存储在消息代理中通过广播的形式通知给其他实例。&lt;/li&gt;
+&lt;li&gt;其他实例收到请求后开始配置更新。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;容错机制&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#容错机制&#34;&gt;#&lt;/a&gt; 容错机制&lt;/h3&gt;
+&lt;h4 id=&#34;限流令牌算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#限流令牌算法&#34;&gt;#&lt;/a&gt; 限流（令牌算法）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;设定阈值：超出部分拒绝提供服务。&lt;/li&gt;
+&lt;li&gt;次要服务降级：通过禁用其他服务来提高某些重要服务的承载。&lt;/li&gt;
+&lt;li&gt;消息队列：对峰值请求进行平滑处理。&lt;/li&gt;
+&lt;li&gt;延迟执行优先级低的请求：和降级类似。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;超时与重试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#超时与重试&#34;&gt;#&lt;/a&gt; 超时与重试&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;取消。长期的超时表示服务可能失效，不如直接取消。&lt;/li&gt;
+&lt;li&gt;重试。短期网络故障导致超时，可用重试。&lt;/li&gt;
+&lt;li&gt;延迟后重试。故障原因是因为负载问题，则可用考虑延时重试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在明知道重试可能无果的情况下，不但不能解决问题，反而会使得服务器雪上加霜❄️。常见的引发服务器雪崩的原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务提供者不可用。&lt;/li&gt;
+&lt;li&gt;服务过载，重试加大流量。&lt;/li&gt;
+&lt;li&gt;服务消费者不可用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;隔离&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#隔离&#34;&gt;#&lt;/a&gt; 隔离&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;防止引发服务级联故障。减少一个服务异常，引发其他服务故障。&lt;/li&gt;
+&lt;li&gt;发生服务故障时，保留部分功能。让其他服务能继续运转。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;熔断和回退&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#熔断和回退&#34;&gt;#&lt;/a&gt; 熔断和回退&lt;/h4&gt;
+&lt;p&gt;说到熔断，就不得不提及「断路器」:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关闭状态：默认情况下处于关闭状态。在某条链路某段时间的失败请求数超过一定数量后开启。&lt;/li&gt;
+&lt;li&gt;打开状态：此状态下，不再向服务提供者发送请求。并启动超时计时器。&lt;/li&gt;
+&lt;li&gt;半开状态：计时器超时后，断路器变更为半开状态，能够允许少量的请求发送。如果依旧失败，则继续置为打开状态。如果成功次数超过阈值，则调整为关闭状态。更像是一颗墙头草🌱&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;服务运维&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#服务运维&#34;&gt;#&lt;/a&gt; 服务运维&lt;/h2&gt;
+&lt;h3 id=&#34;监控与告警️&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#监控与告警️&#34;&gt;#&lt;/a&gt; 监控与告警⚠️&lt;/h3&gt;
+&lt;h4 id=&#34;监控机制与实现&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#监控机制与实现&#34;&gt;#&lt;/a&gt; 监控机制与实现&lt;/h4&gt;
+&lt;p&gt;面临的挑战：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基础设施规模的增加：单点到集群，中控，调度，服务节点演化，节点数量和节点类型增加。&lt;/li&gt;
+&lt;li&gt;监控数据来源的分散：从单个机器收集信息到服务器集群。&lt;/li&gt;
+&lt;li&gt;监控指标的多样性：CPU 使用、性能、响应时间、其他节点状态等等。&lt;/li&gt;
+&lt;li&gt;监控指标数据量大：节点数量增加直接导致监控数据量的增加。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;微服务的监控策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#微服务的监控策略&#34;&gt;#&lt;/a&gt; 微服务的监控策略&lt;/h4&gt;
+&lt;p&gt;组成部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据收集：采样监控信息，转发至聚合模块。&lt;/li&gt;
+&lt;li&gt;数据聚合：对数据进行聚合，通常采用消息队列的形式。根据不同指标，分存在不同的存储模块。&lt;/li&gt;
+&lt;li&gt;数据存储：可用采用时间序列数据库，对数据进行存储。&lt;/li&gt;
+&lt;li&gt;数据展示：读取数据存储模块数据进行可视化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;监控所涉及的指标&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#监控所涉及的指标&#34;&gt;#&lt;/a&gt; 监控所涉及的指标&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;服务器资源监控&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU&lt;/li&gt;
+&lt;li&gt;内存&lt;/li&gt;
+&lt;li&gt;磁盘 IO 等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务器性能监控&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;响应时间&lt;/li&gt;
+&lt;li&gt;健康状况&lt;/li&gt;
+&lt;li&gt;负载情况等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;业务监控&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;消息队列数量&lt;/li&gt;
+&lt;li&gt;各功能模块访问次数&lt;/li&gt;
+&lt;li&gt;用户留存率等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;告警机制与实现&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#告警机制与实现&#34;&gt;#&lt;/a&gt; 告警机制与实现&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;告警策略
+&lt;ul&gt;
+&lt;li&gt;告警级别&lt;/li&gt;
+&lt;li&gt;告警通知人&lt;/li&gt;
+&lt;li&gt;告警通知方式&lt;/li&gt;
+&lt;li&gt;告警服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;告警分级：根据警报的严重程度进行划分，例如内存泄漏导致内存吃满、磁盘空间不足等就较为严重，而显示错误，表现异常，乱码等就比较轻微。&lt;/li&gt;
+&lt;li&gt;通知策略：常见方式有电话、短信、邮件等。&lt;/li&gt;
+&lt;li&gt;消除策略：对于一些经常性的问题，如网络波动等，可能会造成短时间的请求超时，以致服务失效，这种情况下的报警可用进行选择性的屏蔽。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调用链跟踪&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#调用链跟踪&#34;&gt;#&lt;/a&gt; 调用链跟踪🔗&lt;/h3&gt;
+&lt;p&gt;对于一些比较复杂的业务，中间会牵涉到多个服务节点之间的通信，常见的通信方法是通过 RPC，但是出错后往往很难定位源头。如何获取整个 RPC 的调用链路可用有效的提高调试成本。同时了解调用链路还可以用于分析各个节点的性能情况。&lt;/p&gt;
+&lt;h4 id=&#34;调用链跟踪原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#调用链跟踪原理&#34;&gt;#&lt;/a&gt; 调用链跟踪原理&lt;/h4&gt;
+&lt;p&gt;对每个服务节点指定一个唯一的  &lt;code&gt;span_id&lt;/code&gt; ，每次源头（客户端请求，某个服务节点发起）的调用会生成一个唯一的  &lt;code&gt;trace_id&lt;/code&gt;  ，并记录下调用方和被调方的信息，通过日志的形式。后续会通过一个数据中心对所有调用的日志进行汇总，通过  &lt;code&gt;trace_id&lt;/code&gt;  便可以对某一次的调用链路进行分析。&lt;/p&gt;
+&lt;h3 id=&#34;日志聚合&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#日志聚合&#34;&gt;#&lt;/a&gt; 日志聚合📟&lt;/h3&gt;
+&lt;p&gt;解决问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;日志分散，查找困难。&lt;/li&gt;
+&lt;li&gt;迁移繁琐，缺乏统一规范。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;日志聚合服务的原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#日志聚合服务的原理&#34;&gt;#&lt;/a&gt; 日志聚合服务的原理&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;各个服务节点的 agent 系统通过收集各个节点的数据。&lt;/li&gt;
+&lt;li&gt;将数据以事件流的方式发送给日志服务器。&lt;/li&gt;
+&lt;li&gt;日志服务器对日志进行归纳整理，部分数据转交给大数据处理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;note warning&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;服务间传递请求的唯一标识（每个处理函数一个单独的标识 —— 函数名 / 函数名简写）&lt;/li&gt;
+&lt;li&gt;服务本身的唯一标识（每个服务一个单独的服务标识 —— 服务名）&lt;/li&gt;
+&lt;li&gt;日志收集工具（Fluentd、Logstash）&lt;/li&gt;
+&lt;li&gt;日志聚合工具（ElasticSearch）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;关键字&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#关键字&#34;&gt;#&lt;/a&gt; 关键字&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;事件风暴（领域驱动设计的核心概念之一）&lt;/li&gt;
+&lt;li&gt;令牌算法（常用于限流）&lt;/li&gt;
+&lt;li&gt;HAL（Hypertext ApplicationLanguage），一种轻量级的超文本应用描述协议。&lt;/li&gt;
+&lt;li&gt;时间序列数据库（Time Series DataBase，简称 TSDB）&lt;/li&gt;
+&lt;li&gt;分布式链路跟踪&lt;/li&gt;
+&lt;li&gt;探针（代码 hook，在特定情况下触发的埋点事件）&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9tb3ppbGxhemcuY29tLzIwMTYvMDQvYXBtLXB5dGhvbi1hZ2VudC1wcmluY2lwbGUuaHRtbA==&#34;&gt;探针实现原理&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
+        <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
+        <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+        <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+        <updated>2020-12-10T09:46:25.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%9B%9B%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</id>
+        <title>四、微服务参考模型</title>
+        <link rel="alternate" href="https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%9B%9B%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/"/>
+        <content type="html">&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
+&lt;/div&gt;
+</content>
+        <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
+        <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
+        <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+        <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+        <updated>2020-12-10T09:46:25.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%8C%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/</id>
+        <title>二、微服务生态系统</title>
+        <link rel="alternate" href="https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%8C%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/"/>
+        <content type="html">&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;微服务生态系统&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#微服务生态系统&#34;&gt;#&lt;/a&gt; 微服务生态系统&lt;/h1&gt;
+&lt;h2 id=&#34;微服务生态&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#微服务生态&#34;&gt;#&lt;/a&gt; 微服务生态&lt;/h2&gt;
+&lt;h3 id=&#34;接入层&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#接入层&#34;&gt;#&lt;/a&gt; 接入层&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;升级成本高：后台服务多变，客户端如何配合调整。&lt;/li&gt;
+&lt;li&gt;传输效率低：客户端和多个服务器建立链接 or 中心服务器转发。&lt;/li&gt;
+&lt;li&gt;协议一致性：客户端需要适配不同服务的协议传输格式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;业务层&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#业务层&#34;&gt;#&lt;/a&gt; 业务层&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;服务拆分：如何有效的拆分各个服务，保证微服务优势前提下降低开发成本。&lt;/li&gt;
+&lt;li&gt;服务实现：服务之间差异如何调配。&lt;/li&gt;
+&lt;li&gt;服务间通信：服务与服务之间的通信（RPC、消息队列、REST）&lt;/li&gt;
+&lt;li&gt;数据一致性：如何保证多个服务器的数据一致。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;支撑层&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#支撑层&#34;&gt;#&lt;/a&gt; 支撑层&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;服务器地址频繁变更问题：伸缩扩展的微服务架构势必会让服务器 ip 频繁变更，如何可以让客户端和各个服务之间能够感知。&lt;/li&gt;
+&lt;li&gt;如何做到负载均衡：保证每个服务器的负载合理分配。&lt;/li&gt;
+&lt;li&gt;如何让降低服务器配置变更成本：合理利用服务器的配置，减少成本。&lt;/li&gt;
+&lt;li&gt;如何监控系统稳定：保证系统的信息实时被监控。&lt;/li&gt;
+&lt;li&gt;容灾问题如何解决：高负载情况下如何对服务进行降级，熔断等。&lt;/li&gt;
+&lt;li&gt;如何管理日志：统筹各个服务器的日志信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;基础设施&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基础设施&#34;&gt;#&lt;/a&gt; 基础设施&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;快速构建可伸缩、自恢复的基础设施&lt;/li&gt;
+&lt;li&gt;支持可用性、稳定性、可靠性、性能和安全。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;基础设施抽象层&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基础设施抽象层&#34;&gt;#&lt;/a&gt; 基础设施抽象层&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;IaaS（Infrastructure as a Service）以服务的形式提供服务器。&lt;/li&gt;
+&lt;li&gt;PaaS 应用基础设施服务 —— 中间件。&lt;/li&gt;
+&lt;li&gt;CaaS 容器即服务，通过容器部署复杂的多层次服务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;工程实践&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#工程实践&#34;&gt;#&lt;/a&gt; 工程实践&lt;/h2&gt;
+&lt;h3 id=&#34;交付流水线&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#交付流水线&#34;&gt;#&lt;/a&gt; 交付流水线&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;提交阶段：通过 hook 对提交代码进行规范检测。&lt;/li&gt;
+&lt;li&gt;构建阶段：对代码编译，单元测试。&lt;/li&gt;
+&lt;li&gt;验证阶段：生产环境下进行验证，包括但不限于性能、安全、功能等方面。&lt;/li&gt;
+&lt;li&gt;发布阶段：代码更新到正式环境运行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;持续集成持续交付&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#持续集成持续交付&#34;&gt;#&lt;/a&gt; 持续集成 &amp;amp;&amp;amp; 持续交付&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;持续集成：一种软件开发实践，通过频繁的集成代码，并进行测试，快速发现问题。&lt;/li&gt;
+&lt;li&gt;持续交付：提高持续集成的效率，使得持续集成自动化，快速、高效且可靠的推进。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
+        <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
+        <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+        <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+        <updated>2020-12-05T02:46:25.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%80%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%BB%BC%E8%BF%B0/</id>
+        <title>一、微服务架构综述</title>
+        <link rel="alternate" href="https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%80%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%BB%BC%E8%BF%B0/"/>
+        <content type="html">&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;微服务架构综述&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#微服务架构综述&#34;&gt;#&lt;/a&gt; 微服务架构综述&lt;/h1&gt;
+&lt;h2 id=&#34;serverless无服务器架构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#serverless无服务器架构&#34;&gt;#&lt;/a&gt; Serverless（无服务器架构）&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;BaaS（后端即服务）。完全依赖第三方应用程序管理服务端逻辑和状态的「应用程序」。&lt;/li&gt;
+&lt;li&gt;FaaS（函数即服务）。以事件驱动、无状态的方式运行在第三方管理的容器的「应用逻辑」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;serverless优势&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#serverless优势&#34;&gt;#&lt;/a&gt; Serverless 优势：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;自带简单的运行环境（Python/java/Ruby）。&lt;/li&gt;
+&lt;li&gt;部署时间短。&lt;/li&gt;
+&lt;li&gt;容器资源限量（内存 1.5G，磁盘 512M，生命周期 5 分钟）。&lt;/li&gt;
+&lt;li&gt;事件驱动，灵活。&lt;/li&gt;
+&lt;li&gt;自动伸缩。&lt;/li&gt;
+&lt;li&gt;按照请求次数和资源用量收费，实惠。&lt;/li&gt;
+&lt;li&gt;「零」维护成本。&lt;/li&gt;
+&lt;li&gt;安全风险低。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;service-mesh服务网格&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#service-mesh服务网格&#34;&gt;#&lt;/a&gt; Service Mesh (服务网格)&lt;/h2&gt;
+&lt;p&gt;用于实现各个服务节点之间的可靠通信，基于 Sidecar 模式的轻量级部署。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;控制面：用于管理下层业务正常运转的控制链路。&lt;/li&gt;
+&lt;li&gt;数据面：用于上层业务之间的通讯的传输链路。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;istio&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#istio&#34;&gt;#&lt;/a&gt; Istio&lt;/h3&gt;
+&lt;p&gt;目前公认的提供服务网格功能最为强大的开源工具。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pilot：流量管理，负责服务器间请求路由，注册发现和故障处理。&lt;/li&gt;
+&lt;li&gt;Mixer：将策略和 Envoy 进行映射，收集日志，监控指标。&lt;/li&gt;
+&lt;li&gt;Istio-Auth：身份认证，保证通讯安全。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Envoy：是专为大型现代 SOA（面向服务架构）架构设计的 L7 代理和通信总线。该项目源于以下理念：&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;网络对应用程序来说应该是透明的。当网络和应用程序出现问题时，应该很容易确定问题的根源。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
+        <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
+        <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+        <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+        <updated>2020-12-01T12:46:25.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://allengx.gitee.io/computer-science/study/python/Pydantic%E6%95%B0%E6%8D%AE%E6%9C%89%E6%95%88%E6%80%A7%E9%AA%8C%E8%AF%81/</id>
+        <title></title>
+        <link rel="alternate" href="https://allengx.gitee.io/computer-science/study/python/Pydantic%E6%95%B0%E6%8D%AE%E6%9C%89%E6%95%88%E6%80%A7%E9%AA%8C%E8%AF%81/"/>
+        <content type="html">&lt;h1 id=&#34;pydantic-数据有效性验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#pydantic-数据有效性验证&#34;&gt;#&lt;/a&gt; Pydantic 数据有效性验证&lt;/h1&gt;
+&lt;h2 id=&#34;性能不太好&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#性能不太好&#34;&gt;#&lt;/a&gt; 性能不太好&lt;/h2&gt;
+&lt;p&gt;要做数据校验，就免不了多余的性能消耗，pydantic 也不例外（不过在这点上，pydantic 的性能表现也优于其他库）。&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;from&lt;/span&gt; pydantic &lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; BaseModel&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; timeit&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;BaseModel&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token builtin&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    name&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;str&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Use&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;self&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; name&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        self&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;id&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        self&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;name &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; name&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;timeit&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;timeit&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;Use(id=1,name=&#34;123&#34;)&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;globals&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;globals&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;timeit&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;timeit&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;User(id=1,name=&#34;123&#34;)&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;globals&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;globals&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;output&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;0.3781897000000001&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;2.9784895000000002&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;对象创建速度差了将近十倍。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;basemodel&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#basemodel&#34;&gt;#&lt;/a&gt; BaseModel&lt;/h2&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;from&lt;/span&gt; pydantic &lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; BaseModel&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;BaseModel&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token builtin&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    name&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;str&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;User&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;name&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;123&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;User&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+        <updated>2020-11-16T11:16:09.105Z</updated>
+    </entry>
     <entry>
         <id>https://allengx.gitee.io/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/%E5%8D%81%E4%B8%89%E3%80%81%E5%9C%A8%E8%BE%B9%E7%95%8C%E5%A4%84%E6%80%9D%E8%80%83/</id>
         <title>十三、在边界处思考</title>
@@ -908,725 +1446,6 @@
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1 id=&#34;标准日本语初级上&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#标准日本语初级上&#34;&gt;#&lt;/a&gt; 标准日本语初级（上）&lt;/h1&gt;
-</content>
-        <category term="日语" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/" />
-        <category term="学习笔记" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/" />
-        <category term="日语语法初级（上）" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/" />
-        <category term="日语语法" scheme="https://allengx.gitee.io/tags/%E6%97%A5%E8%AF%AD%E8%AF%AD%E6%B3%95/" />
-        <updated>2020-10-25T05:48:15.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E4%BA%94%E3%80%81%E5%B0%8F%E6%9D%8E%E5%9C%A8%E6%97%A5%E6%9C%AC%E8%BF%8E%E6%96%B0%E6%98%A5/</id>
-        <title>标准日本语初级-上</title>
-        <link rel="alternate" href="https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E4%BA%94%E3%80%81%E5%B0%8F%E6%9D%8E%E5%9C%A8%E6%97%A5%E6%9C%AC%E8%BF%8E%E6%96%B0%E6%98%A5/"/>
-        <content type="html">&lt;div class=&#34;note info&#34;&gt;
-&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;标准日本语初级上&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#标准日本语初级上&#34;&gt;#&lt;/a&gt; 标准日本语初级（上）&lt;/h1&gt;
-</content>
-        <category term="日语" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/" />
-        <category term="学习笔记" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/" />
-        <category term="日语语法初级（上）" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/" />
-        <category term="日语语法" scheme="https://allengx.gitee.io/tags/%E6%97%A5%E8%AF%AD%E8%AF%AD%E6%B3%95/" />
-        <updated>2020-10-25T05:48:15.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E5%85%AD%E3%80%81%E5%86%8D%E8%A7%81%EF%BC%81%E6%97%A5%E6%9C%AC/</id>
-        <title>标准日本语初级-上</title>
-        <link rel="alternate" href="https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E5%85%AD%E3%80%81%E5%86%8D%E8%A7%81%EF%BC%81%E6%97%A5%E6%9C%AC/"/>
-        <content type="html">&lt;div class=&#34;note info&#34;&gt;
-&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;标准日本语初级上&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#标准日本语初级上&#34;&gt;#&lt;/a&gt; 标准日本语初级（上）&lt;/h1&gt;
-</content>
-        <category term="日语" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/" />
-        <category term="学习笔记" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/" />
-        <category term="日语语法初级（上）" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/" />
-        <category term="日语语法" scheme="https://allengx.gitee.io/tags/%E6%97%A5%E8%AF%AD%E8%AF%AD%E6%B3%95/" />
-        <updated>2020-10-25T05:48:15.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E5%9F%BA%E6%9C%AC%E6%A0%87%E7%AD%BE/</id>
-        <title>基本标签</title>
-        <link rel="alternate" href="https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E5%9F%BA%E6%9C%AC%E6%A0%87%E7%AD%BE/"/>
-        <content type="html">&lt;div class=&#34;note info&#34;&gt;
-&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;常见的标签含义&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常见的标签含义&#34;&gt;#&lt;/a&gt; 常见的标签含义&lt;/h1&gt;
-&lt;p&gt;&lt;span class=&#34;label danger&#34;&gt;名&lt;/span&gt; ：名词。&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;label danger&#34;&gt;叹词&lt;/span&gt; ：语气词。&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;label danger&#34;&gt;寒暄语&lt;/span&gt; ：日常问候的语言。&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;label danger&#34;&gt;外来語&lt;/span&gt; ：非本土翻译得来的语言，用片假名书写。&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;label danger&#34;&gt;名场所&lt;/span&gt; ：表示地方的名词。&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;label danger&#34;&gt;量词&lt;/span&gt; ：和数词搭配表示数量。&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;label danger&#34;&gt;对比&lt;/span&gt; ：表示和什么作比较。&lt;/p&gt;
-</content>
-        <category term="日语" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/" />
-        <category term="学习笔记" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/" />
-        <category term="日语语法初级（上）" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/" />
-        <category term="日语语法" scheme="https://allengx.gitee.io/tags/%E6%97%A5%E8%AF%AD%E8%AF%AD%E6%B3%95/" />
-        <updated>2020-10-25T05:48:15.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E5%9B%9B%E3%80%81%E5%B0%8F%E6%9D%8E%E7%9A%84%E5%85%AC%E5%8F%B8%E7%94%9F%E6%B4%BB%E2%91%A1/</id>
-        <title>标准日本语初级-上</title>
-        <link rel="alternate" href="https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E5%9B%9B%E3%80%81%E5%B0%8F%E6%9D%8E%E7%9A%84%E5%85%AC%E5%8F%B8%E7%94%9F%E6%B4%BB%E2%91%A1/"/>
-        <content type="html">&lt;div class=&#34;note info&#34;&gt;
-&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;标准日本语初级上&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#标准日本语初级上&#34;&gt;#&lt;/a&gt; 标准日本语初级（上）&lt;/h1&gt;
-</content>
-        <category term="日语" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/" />
-        <category term="学习笔记" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/" />
-        <category term="日语语法初级（上）" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/" />
-        <category term="日语语法" scheme="https://allengx.gitee.io/tags/%E6%97%A5%E8%AF%AD%E8%AF%AD%E6%B3%95/" />
-        <updated>2020-10-25T05:48:15.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E4%B8%80%E3%80%81%E5%B0%8F%E6%9D%8E%E8%B5%B4%E6%97%A5/</id>
-        <title>一、小李赴日</title>
-        <link rel="alternate" href="https://allengx.gitee.io/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%96%87%E6%B3%95%E5%88%9D%E7%BA%A7%EF%BC%88%E4%B8%8A%EF%BC%89/%E4%B8%80%E3%80%81%E5%B0%8F%E6%9D%8E%E8%B5%B4%E6%97%A5/"/>
-        <content type="html">&lt;div class=&#34;note info&#34;&gt;
-&lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;一-小李赴日&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-小李赴日&#34;&gt;#&lt;/a&gt; 一、小李赴日&lt;/h1&gt;
-&lt;h2 id=&#34;第1课-李りさん中国人ちゅうごくじんです&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第1课-李りさん中国人ちゅうごくじんです&#34;&gt;#&lt;/a&gt; 第①课 &lt;ruby&gt;李&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;り&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt; さん&lt;rt&gt;&lt;/rt&gt;&lt;/ruby&gt;	&lt;ruby&gt;中国人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ちゅうごくじん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt; です&lt;rt&gt;&lt;/rt&gt;&lt;/ruby&gt;&lt;/h2&gt;
-&lt;h3 id=&#34;语法解释&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#语法解释&#34;&gt;#&lt;/a&gt; 语法解释&lt;/h3&gt;
-&lt;h4 id=&#34;名-はわ-名-です&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名-はわ-名-です&#34;&gt;#&lt;/a&gt;  &lt;code&gt;「名」&lt;/code&gt;   &lt;ruby&gt;は&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;わ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;   &lt;code&gt;「名」&lt;/code&gt;   です&lt;/h4&gt;
-&lt;p&gt;意为 &lt;code&gt;...是...&lt;/code&gt; 。 &lt;code&gt;...は&lt;/code&gt; 是主语的部分， &lt;code&gt;...です&lt;/code&gt; 是谓语的部分。助词 &lt;code&gt;は&lt;/code&gt; 用于提示主题。读作 &lt;code&gt;わ&lt;/code&gt; 。&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;李&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;り&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん　 &lt;code&gt;は&lt;/code&gt; 　&lt;ruby&gt;中国人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ちゅうごくじん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;です&lt;/code&gt; 。（小李是中国人）&lt;/li&gt;
-&lt;li&gt;わたし　 &lt;code&gt;は&lt;/code&gt; 　&lt;ruby&gt;日本&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;にほん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; じん　 &lt;code&gt;です&lt;/code&gt; 。（我是日本人）&lt;/li&gt;
-&lt;li&gt;わたし　 &lt;code&gt;は&lt;/code&gt; 　&lt;ruby&gt;王&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;おう&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;です&lt;/code&gt; 。（我姓王）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;名-はわ-名-です-ありません&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名-はわ-名-です-ありません&#34;&gt;#&lt;/a&gt;  &lt;code&gt;「名」&lt;/code&gt;   &lt;ruby&gt;は&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;わ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;   &lt;code&gt;「名」&lt;/code&gt;   です　ありません&lt;/h4&gt;
-&lt;p&gt;意为 &lt;code&gt;...不是...&lt;/code&gt; 。 &lt;code&gt;です　ありません&lt;/code&gt; 的  &lt;code&gt;です&lt;/code&gt;  也可以用  &lt;code&gt;じゃ&lt;/code&gt;  代替。&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;森&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;もり&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん　 &lt;code&gt;は&lt;/code&gt; 　&lt;ruby&gt;学生&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;がくせい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;です　ありません&lt;/code&gt; 。（森先生不是学生）&lt;/li&gt;
-&lt;li&gt;わたし　 &lt;code&gt;は&lt;/code&gt; 　&lt;ruby&gt;日本&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;にほん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt; じん&lt;rt&gt;&lt;/rt&gt;&lt;/ruby&gt;　 &lt;code&gt;です　ありません&lt;/code&gt; 。（我不是日本人）&lt;/li&gt;
-&lt;li&gt;わたし　 &lt;code&gt;は&lt;/code&gt; 　&lt;ruby&gt;田中&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;たなか&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;じゃ　ありません&lt;/code&gt; 。（我不是田中）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;名-はわ-名-ですか&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名-はわ-名-ですか&#34;&gt;#&lt;/a&gt;  &lt;code&gt;「名」&lt;/code&gt;   &lt;ruby&gt;は&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;わ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;   &lt;code&gt;「名」&lt;/code&gt;   ですか？&lt;/h4&gt;
-&lt;p&gt;意为 &lt;code&gt;...是...吗？&lt;/code&gt; 。 &lt;code&gt;か&lt;/code&gt; 有标识疑问的意思&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;あなた　 &lt;code&gt;は&lt;/code&gt; 　 &lt;ruby&gt;小野&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;おの&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん　 &lt;code&gt;ですか&lt;/code&gt; 。（您是小野女生吗？）&lt;/li&gt;
-&lt;li&gt;キムさん　 &lt;code&gt;は&lt;/code&gt; 　&lt;ruby&gt;中国人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ちゅうごくじん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;ですか&lt;/code&gt; 。（金女士是中国人吗？）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;名-の-名-从属机构-国家属性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名-の-名-从属机构-国家属性&#34;&gt;#&lt;/a&gt;  &lt;code&gt;「名」&lt;/code&gt;  の   &lt;code&gt;「名」&lt;/code&gt;   「从属机构、国家」「属性」&lt;/h4&gt;
-&lt;p&gt;助词 &lt;code&gt;の&lt;/code&gt; 连接两个名词，表示前面名词是后面的「从属机构、国家」或者「属性」&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;李&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;り&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さんは　 &lt;ruby&gt;JC&lt;rt&gt;&lt;/rt&gt; 企画&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ジェーシーきかく&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;の&lt;/code&gt; 　 &lt;ruby&gt;社員&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;しゃいん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; です。（小李是 JC 策划公司的职员）&lt;/li&gt;
-&lt;li&gt;&lt;ruby&gt;北京旅行社&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ペキンりょこうしゃ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; は　&lt;ruby&gt;中国&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ちゅうご&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;の&lt;/code&gt; 　 &lt;ruby&gt;企業&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;きぎょう&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; です。（北京旅行社是中国的企业）&lt;/li&gt;
-&lt;li&gt;デュボンさんは　 &lt;ruby&gt;大学&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;だいがく&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;の&lt;/code&gt; 　 &lt;ruby&gt;先生&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;せんせい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; です。（迪蓬先生是大学老师）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;note danger&#34;&gt;
-&lt;p&gt;日语中名词和名词之前一般用  &lt;code&gt;の&lt;/code&gt;  来连接。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;词语讲解&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#词语讲解&#34;&gt;#&lt;/a&gt; 词语讲解&lt;/h3&gt;
-&lt;h4 id=&#34;人称&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#人称&#34;&gt;#&lt;/a&gt;  &lt;code&gt;人称&lt;/code&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;「わたし」：第一人称&lt;/li&gt;
-&lt;li&gt;「あなた」：第二人称&lt;/li&gt;
-&lt;li&gt;「あの &lt;ruby&gt;人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ひと&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;」：第三人称&lt;/li&gt;
-&lt;li&gt;「~ さん」：用于他人姓名后&lt;/li&gt;
-&lt;li&gt;「~ ちゃん」：多用于称呼小孩&lt;/li&gt;
-&lt;li&gt;「~ &lt;ruby&gt;君&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;くん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;」：多用于称呼比自己年轻的男性&lt;/li&gt;
-&lt;li&gt;「 &lt;ruby&gt;先生&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;せんせい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;」：指代老师&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;人称省略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#人称省略&#34;&gt;#&lt;/a&gt;  &lt;code&gt;人称省略&lt;/code&gt;&lt;/h4&gt;
-&lt;p&gt;可以通过上下文推测出的人称一般可以省略，并且听上去更有礼貌。多省略第一、第二人称主语。&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;（あなたは）&lt;/code&gt;  &lt;ruby&gt;吉田&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;よしだ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さんですが。&lt;br /&gt;
-—— いいえ， &lt;code&gt;（わたしは）&lt;/code&gt;  &lt;ruby&gt;吉田&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;よしだ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; じゃ　ありません。 &lt;code&gt;（わたしは）&lt;/code&gt; 　 &lt;ruby&gt;森&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;もり&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; です。&lt;br /&gt;
-（你是吉田先生吗？—— 不，我不是吉田。我是森。）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;叹词&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#叹词&#34;&gt;#&lt;/a&gt;  &lt;code&gt;「叹词」&lt;/code&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;あっ：哎，啊。表示惊叹的意思&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;寒暄语&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#寒暄语&#34;&gt;#&lt;/a&gt;  &lt;code&gt;「寒暄语」&lt;/code&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;どうぞ　よろしく　お願いします：请多关照的意思，可以省略部分内容，效果也是一致的。例如：
-&lt;ul&gt;
-&lt;li&gt;どうぞ　よろしく&lt;/li&gt;
-&lt;li&gt;よろしく　お願いします&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;こちらこそ：我才是，我才要、您请～的意思&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;第2课-これわ-本ほんです&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第2课-これわ-本ほんです&#34;&gt;#&lt;/a&gt; 第②课 これわ　 &lt;ruby&gt;本&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ほん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; です&lt;/h2&gt;
-&lt;h3 id=&#34;语法解释-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#语法解释-2&#34;&gt;#&lt;/a&gt; 语法解释&lt;/h3&gt;
-&lt;h4 id=&#34;これそれあれは名です&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#これそれあれは名です&#34;&gt;#&lt;/a&gt; 「これ／それ／あれ」は &lt;code&gt;「名」&lt;/code&gt; です&lt;/h4&gt;
-&lt;p&gt;意为 &lt;code&gt;「这／那／那个」是...&lt;/code&gt; 。 &lt;code&gt;「これ／それ／あれ」&lt;/code&gt; 区别：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;「これ」&lt;/code&gt; ：这的意思，通常指代距离说话人较近的事物，或者距离两者都近&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;「それ」&lt;/code&gt; ：那的意思，通常指代距离听话人较近的事物，或者距离两者稍微远一些&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;「あれ」&lt;/code&gt; ：那个的意思，通常指代距离说话人和听话人都较远的事物，或者距离两者比较远&lt;/li&gt;
-&lt;/ul&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;p&gt;-　 &lt;code&gt;ごれ&lt;/code&gt; 　は　 &lt;ruby&gt;本&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ほん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; です。（这是书）&lt;br /&gt;
--　 &lt;code&gt;それ&lt;/code&gt; 　は　かばん　です。（那是包）&lt;br /&gt;
--　 &lt;code&gt;あれ&lt;/code&gt; 　は　テレビ　です。（那是电视机）&lt;/p&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;だれですが-何なんですが&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#だれですが-何なんですが&#34;&gt;#&lt;/a&gt; 「だれですが／ &lt;ruby&gt;何&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;なん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ですが」&lt;/h4&gt;
-&lt;p&gt;意为 &lt;code&gt;「谁/什么」&lt;/code&gt; 。一个指代人，一个指代物&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;p&gt;-　それは　&lt;ruby&gt;何&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;なん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　ですが。（那是什么？）&lt;br /&gt;
--　あの 　&lt;ruby&gt;人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ひと&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; は　だれ　ですが。（那个人是谁？）&lt;/p&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;名-の-名-所属&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名-の-名-所属&#34;&gt;#&lt;/a&gt;  &lt;code&gt;「名」&lt;/code&gt;  の   &lt;code&gt;「名」&lt;/code&gt;   「所属」&lt;/h4&gt;
-&lt;p&gt;&lt;code&gt;の&lt;/code&gt; 连接名词和名词，表示所属关系&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;p&gt;-　わたし　の　かぎ。（我的钥匙）&lt;br /&gt;
--　 &lt;ruby&gt;田中&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;たなか&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん　の　 &lt;ruby&gt;車&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;くるま&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;。（田中先生的车）&lt;/p&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;ごの-そのあの名-は-名-です&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ごの-そのあの名-は-名-です&#34;&gt;#&lt;/a&gt; 「ごの／ その／あの」 &lt;code&gt;「名」&lt;/code&gt;   は   &lt;code&gt;「名」&lt;/code&gt;  です&lt;/h4&gt;
-&lt;p&gt;意为 &lt;code&gt;「这/那/那个」&lt;/code&gt; 「名」是 「名」的。&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;p&gt;-　 &lt;code&gt;この&lt;/code&gt; 　カメラ　は　スミスさんの（カメラ）です。（这个照相机是史密斯先生的）&lt;br /&gt;
--　 &lt;code&gt;その&lt;/code&gt; 　 &lt;ruby&gt;自転車&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;じてんしゃ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　は　 &lt;ruby&gt;森&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;もり&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さんのせす。（那辆自行车是森先生的）&lt;br /&gt;
--　 &lt;code&gt;あの&lt;/code&gt; 　ノート　は　だれのですが。（那个笔记比是谁的？）&lt;/p&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;どの-どれ名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#どの-どれ名&#34;&gt;#&lt;/a&gt; 「どの／ どれ」 &lt;code&gt;「名」&lt;/code&gt;&lt;/h4&gt;
-&lt;p&gt;意为 &lt;code&gt;「哪个/哪个（三者以上）」&lt;/code&gt; 「名」&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;p&gt;-　 &lt;ruby&gt;森&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;もり&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さんの　かばんは　 &lt;code&gt;どれ&lt;/code&gt; （かばん）　ですが。（森先生的包是哪个？）&lt;br /&gt;
--　  &lt;ruby&gt;長島&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ながしま&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さんの　 &lt;ruby&gt;傘&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;かさ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;どれ&lt;/code&gt; 　ですが。（长岛先生的伞是哪把？）&lt;br /&gt;
--　  &lt;ruby&gt;小野&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;おの&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さんの　 &lt;ruby&gt;机&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;つくえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; は　 &lt;code&gt;どの&lt;/code&gt; 　 &lt;ruby&gt;机&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;つくえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　ですが。（小野女士的桌子是哪一张？）&lt;/p&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;100以下数字&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#100以下数字&#34;&gt;#&lt;/a&gt; 「100」以下数字&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;0~9&lt;/th&gt;
-&lt;th style=&#34;text-align:left&#34;&gt;日语表示&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;10~19&lt;/th&gt;
-&lt;th style=&#34;text-align:left&#34;&gt;日语表示&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;10 的整数倍&lt;/th&gt;
-&lt;th style=&#34;text-align:left&#34;&gt;日语表示&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;0&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;れい／ぜろ&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅう&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;20&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;にじゅう&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;いち&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;11&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅういち&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;30&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;さんじゅう&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;に&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;12&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅうに&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;40&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;よんじゅう&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;3&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;さん&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;13&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅうさん&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;50&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;ごじゅう&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;し／よん&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;14&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅうし／じゅうよん&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;60&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;ろくじゅう&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;ご&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;15&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅうご&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;70&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;なｎじゅう&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;6&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;ろく&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;16&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅうろく&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;80&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;はちじゅう&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;7&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;しち／なな&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;17&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅうしち／じゅうなな&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;90&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;きゅうじゅう&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;はち&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;18&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅうはち&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;100&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;ひゃく&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;9&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;く／きゅう&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;19&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;じゅうく／じゅうきゅう&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;／&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;／&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;0.1&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;れいてんいち&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;2/3&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;さんぶんのに&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;／&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;／&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&#34;词语讲解-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#词语讲解-2&#34;&gt;#&lt;/a&gt; 词语讲解&lt;/h3&gt;
-&lt;h4 id=&#34;方かた-礼貌语言&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#方かた-礼貌语言&#34;&gt;#&lt;/a&gt; &lt;ruby&gt;方&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;かた&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　「礼貌语言」&lt;/h4&gt;
-&lt;p&gt;对  &lt;ruby&gt;人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ひと&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　的一种尊称，常用于以下几种情况：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;长辈、上司&lt;/li&gt;
-&lt;li&gt;初次见面、交往不多的人&lt;/li&gt;
-&lt;li&gt;会议或者公开场合&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;询问年龄-礼貌语言&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#询问年龄-礼貌语言&#34;&gt;#&lt;/a&gt; 询问年龄　「礼貌语言」&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;何歳&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;なんさい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ですが（多大了）&lt;/li&gt;
-&lt;li&gt;おいくつですか（多大年纪了，更礼貌一些）&lt;/li&gt;
-&lt;li&gt;いくつ（多大了，询问小孩）&lt;/li&gt;
-&lt;li&gt;&lt;ruby&gt;何歳&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;なんさい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;（多大了，询问小孩）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;どうぞ&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#どうぞ&#34;&gt;#&lt;/a&gt;  &lt;code&gt;どうぞ&lt;/code&gt;&lt;/h4&gt;
-&lt;p&gt;意为：「请收下／请用餐」，常用于给对方物品或者劝对方进餐。&lt;/p&gt;
-&lt;h4 id=&#34;叹词-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#叹词-2&#34;&gt;#&lt;/a&gt;  &lt;code&gt;「叹词」&lt;/code&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;えっ：意为「啊？／啥？」，表示惊叹，意外，吃惊或者没有听懂对方说话的反问，重复说会显得不礼貌。&lt;/li&gt;
-&lt;li&gt;わあ：意为「哇～！」，表示感动，吃惊或者心情激动是发出的声音。&lt;/li&gt;
-&lt;li&gt;はい：意为「嗯／是的」，表示赞同对方的观点。被别人交到的时候要用  &lt;code&gt;はい&lt;/code&gt;  不能用  &lt;code&gt;ええ&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;ええ：意为「嗯／是的」，表示赞同对方的观点。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;外来語がいらいご&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#外来語がいらいご&#34;&gt;#&lt;/a&gt; 「&lt;ruby&gt;外来語&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;がいらいご&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;」&lt;/h4&gt;
-&lt;p&gt;外来词，大部分来自欧美语言，用片假名书写。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;スワトウ：汕头&lt;/li&gt;
-&lt;li&gt;ロンドン：伦敦&lt;/li&gt;
-&lt;li&gt;シルク：丝绸&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;どうも-ありがとう-ございます-寒暄语&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#どうも-ありがとう-ございます-寒暄语&#34;&gt;#&lt;/a&gt;  &lt;code&gt;どうも　ありがとう　ございます&lt;/code&gt; 　「寒暄语」&lt;/h4&gt;
-&lt;p&gt;常用于表达对对方的谢意，也可以简化版的   &lt;code&gt;どうも&lt;/code&gt; ，情感没有原来那么强烈。&lt;/p&gt;
-&lt;h3 id=&#34;亲属称谓&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#亲属称谓&#34;&gt;#&lt;/a&gt; 亲属称谓&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;自己的亲属&lt;/th&gt;
-&lt;th&gt;别人的亲属&lt;/th&gt;
-&lt;th&gt;自己的亲属&lt;/th&gt;
-&lt;th&gt;别人的亲属&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;ruby&gt;祖父&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;そふ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　祖父／外祖父&lt;/td&gt;
-&lt;td&gt;おじいさん&lt;/td&gt;
-&lt;td&gt;&lt;ruby&gt;兄弟&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;きょうだい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; 兄弟／兄弟姐妹&lt;/td&gt;
-&lt;td&gt;ご&lt;ruby&gt;兄弟&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;きょうだい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;ruby&gt;祖母&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;そぼ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　祖母／外祖母&lt;/td&gt;
-&lt;td&gt;おばあさん&lt;/td&gt;
-&lt;td&gt;&lt;ruby&gt;兄&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;あに&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; 　哥哥&lt;/td&gt;
-&lt;td&gt;お&lt;ruby&gt;兄&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;にい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;ruby&gt;両親&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;りょうしん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　父母&lt;/td&gt;
-&lt;td&gt;ご&lt;ruby&gt;両親&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;りょうしん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;&lt;/td&gt;
-&lt;td&gt;&lt;ruby&gt;姉&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;あね&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　姐姐&lt;/td&gt;
-&lt;td&gt;お&lt;ruby&gt;姉&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ねえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;ruby&gt;父親&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ちち&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　父亲&lt;/td&gt;
-&lt;td&gt;お &lt;ruby&gt;父&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;とう&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん&lt;/td&gt;
-&lt;td&gt;&lt;ruby&gt;弟&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;おとうと&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　弟弟&lt;/td&gt;
-&lt;td&gt;&lt;ruby&gt;弟&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;おとうと&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;ruby&gt;母親&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;はは&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　母亲&lt;/td&gt;
-&lt;td&gt;お &lt;ruby&gt;母&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;かあ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん&lt;/td&gt;
-&lt;td&gt;&lt;ruby&gt;妹&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;いもうと&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　妹妹&lt;/td&gt;
-&lt;td&gt;&lt;ruby&gt;妹&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;いもうと&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;ruby&gt;息子&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;むすこ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　儿子&lt;/td&gt;
-&lt;td&gt;&lt;ruby&gt;息子&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;むすこ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん&lt;/td&gt;
-&lt;td&gt;おじ　伯伯／叔叔／舅舅／姑父&lt;/td&gt;
-&lt;td&gt;おじさん&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;ruby&gt;娘&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;むすめ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　女儿&lt;/td&gt;
-&lt;td&gt;&lt;ruby&gt;娘&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;むすめ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん／お &lt;ruby&gt;嬢&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;じょう&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さん&lt;/td&gt;
-&lt;td&gt;おば　伯母／婶婶／姑姑／舅妈&lt;/td&gt;
-&lt;td&gt;おばさん&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;第3课-ここは-デパートです&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第3课-ここは-デパートです&#34;&gt;#&lt;/a&gt; 第③课 ここは　デパートです&lt;/h2&gt;
-&lt;h3 id=&#34;语法解释-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#语法解释-3&#34;&gt;#&lt;/a&gt; 语法解释&lt;/h3&gt;
-&lt;h4 id=&#34;ここそこあそこ-は-名です&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ここそこあそこ-は-名です&#34;&gt;#&lt;/a&gt;  &lt;code&gt;「ここ／そこ／あそこ」&lt;/code&gt; 　は　「名」です&lt;/h4&gt;
-&lt;p&gt;意为「这里是／那里是／那儿是」&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;ここ&lt;/code&gt; 　は　デパートです。（这里是百货商店）&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;そこ&lt;/code&gt; 　は　 &lt;ruby&gt;図書館&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;としょかん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; です。（那里是图书馆）&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;あそこ&lt;/code&gt; 　は　 &lt;ruby&gt;入口&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;いりくち&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; です。（那儿是入口）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;名-は-名场所です&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名-は-名场所です&#34;&gt;#&lt;/a&gt; 「名」　は　 &lt;code&gt;名「场所」&lt;/code&gt; です&lt;/h4&gt;
-&lt;p&gt;表示前面的名词在后面的场所&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;食堂&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;しょくどう&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　は　デパートの　 &lt;ruby&gt;七階&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ななかい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　です。（食堂在百货商店的七楼）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;名-は-どこですが&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名-は-どこですが&#34;&gt;#&lt;/a&gt; 「名」　は　どこですが&lt;/h4&gt;
-&lt;p&gt;表示询问前面的名词在哪&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;トイレ　は　どこですが。（厕所在哪？）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;名-も-名-です&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名-も-名-です&#34;&gt;#&lt;/a&gt; 「名」　も　「名」　です&lt;/h4&gt;
-&lt;p&gt;&lt;code&gt;も&lt;/code&gt; 　表示  &lt;code&gt;也&lt;/code&gt;  的意思&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;あなた　も　 &lt;ruby&gt;中国人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ちゅうごくじん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ですが。（你也是中国人吗？）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;名-は-名-ですか名-ですか&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名-は-名-ですか名-ですか&#34;&gt;#&lt;/a&gt; 「名」　は　「名」　ですか，「名」　ですか&lt;/h4&gt;
-&lt;p&gt;向别人询问答案是否是其中的一种，回答的时候不能用  &lt;code&gt;はい&lt;/code&gt;  或者  &lt;code&gt;いいえ&lt;/code&gt;&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;林&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;はやし&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さんは　 &lt;ruby&gt;韓国人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;かんこくじん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ですか， &lt;ruby&gt;日本人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;にほんじん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ですか， &lt;ruby&gt;中国人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ちゅうごくじん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ですが。&lt;/li&gt;
-&lt;li&gt;&lt;ruby&gt;日本人&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;にほんじん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; です。&lt;br /&gt;
-—— 林先生是韩国人，日本人，还是中国人。&lt;br /&gt;
-—— 是日本人。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h3 id=&#34;100以上数字&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#100以上数字&#34;&gt;#&lt;/a&gt; 100 以上数字&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;100&lt;/th&gt;
-&lt;th&gt;ひゃく&lt;/th&gt;
-&lt;th&gt;1000&lt;/th&gt;
-&lt;th&gt;せん&lt;/th&gt;
-&lt;th&gt;10,000&lt;/th&gt;
-&lt;th&gt;いちまん&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;200&lt;/td&gt;
-&lt;td&gt;にひゃく&lt;/td&gt;
-&lt;td&gt;2000&lt;/td&gt;
-&lt;td&gt;にせん&lt;/td&gt;
-&lt;td&gt;100,000&lt;/td&gt;
-&lt;td&gt;じゅうまん&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;300&lt;/td&gt;
-&lt;td&gt;さん &lt;code&gt;び&lt;/code&gt; ゃく&lt;/td&gt;
-&lt;td&gt;3000&lt;/td&gt;
-&lt;td&gt;さんぜん&lt;/td&gt;
-&lt;td&gt;1,000,000&lt;/td&gt;
-&lt;td&gt;ひゃくまん&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;400&lt;/td&gt;
-&lt;td&gt;よんひゃく&lt;/td&gt;
-&lt;td&gt;4000&lt;/td&gt;
-&lt;td&gt;よんせん&lt;/td&gt;
-&lt;td&gt;10,000,000&lt;/td&gt;
-&lt;td&gt;いっせんまん&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;500&lt;/td&gt;
-&lt;td&gt;ごひゃく&lt;/td&gt;
-&lt;td&gt;5000&lt;/td&gt;
-&lt;td&gt;ごせん&lt;/td&gt;
-&lt;td&gt;100,000,000&lt;/td&gt;
-&lt;td&gt;いちおく&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;600&lt;/td&gt;
-&lt;td&gt;ろっぴゃく&lt;/td&gt;
-&lt;td&gt;6000&lt;/td&gt;
-&lt;td&gt;ろくせん&lt;/td&gt;
-&lt;td&gt;9002&lt;/td&gt;
-&lt;td&gt;きゅうせんに&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;700&lt;/td&gt;
-&lt;td&gt;ななひゃく&lt;/td&gt;
-&lt;td&gt;7000&lt;/td&gt;
-&lt;td&gt;ななせん&lt;/td&gt;
-&lt;td&gt;9020&lt;/td&gt;
-&lt;td&gt;きゅうせんにじゅう&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;800&lt;/td&gt;
-&lt;td&gt;はっぴゃく&lt;/td&gt;
-&lt;td&gt;8000&lt;/td&gt;
-&lt;td&gt;はっせん&lt;/td&gt;
-&lt;td&gt;9200&lt;/td&gt;
-&lt;td&gt;きゅうせんにひゃく&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;900&lt;/td&gt;
-&lt;td&gt;きゅうひゃく&lt;/td&gt;
-&lt;td&gt;9000&lt;/td&gt;
-&lt;td&gt;きゅうせん&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;一百、一千前面不需要加  &lt;code&gt;「1」&lt;/code&gt; ，但是一万、一千万、一亿需要。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;词语讲解-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#词语讲解-3&#34;&gt;#&lt;/a&gt; 词语讲解&lt;/h3&gt;
-&lt;h4 id=&#34;一階いっかい-量词一楼&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一階いっかい-量词一楼&#34;&gt;#&lt;/a&gt; &lt;ruby&gt;一階&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;いっかい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; 「量词」：一楼&lt;/h4&gt;
-&lt;h4 id=&#34;谓语省略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#谓语省略&#34;&gt;#&lt;/a&gt; 谓语省略&lt;/h4&gt;
-&lt;p&gt;进一步询问时，有时候只是简单的替换主语，可以把谓语省略&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;これは　いくらですか&lt;/li&gt;
-&lt;li&gt;あれは&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;—— 这个多少钱？&lt;br /&gt;
-—— 那个呢？&lt;/p&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;礼貌语言&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#礼貌语言&#34;&gt;#&lt;/a&gt; 礼貌语言&lt;/h4&gt;
-&lt;p&gt;-　こちら／そちら／あちら／どちら：这里／那里／那儿／哪儿&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;受付&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;うけつけ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; は　どこですか。（接待处在哪？）&lt;/li&gt;
-&lt;li&gt;あそこです。（在那儿。）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;缩略词&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#缩略词&#34;&gt;#&lt;/a&gt; 缩略词&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;パソコン（パーソナルコンピューター）：个人电脑&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;あのう搭话&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#あのう搭话&#34;&gt;#&lt;/a&gt; あのう「搭话」&lt;/h4&gt;
-&lt;p&gt;引起对方注意，开启一段对话。&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;あのう， &lt;ruby&gt;課長&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;かちょう&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;。（对不起，科长）&lt;/li&gt;
-&lt;li&gt;&lt;ruby&gt;何&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;なん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ですか。（什么？）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;~ですか确认&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#~ですか确认&#34;&gt;#&lt;/a&gt; ～ですか「确认」&lt;/h4&gt;
-&lt;p&gt;が（↗）表示不确定的询问，が（↘）表示肯定&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;あのう， &lt;ruby&gt;東京&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;とうきょう&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;ruby&gt;地図&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ちず&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; は　どこですか。（请问，东京地图在什么地方？）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;ruby&gt;地図&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ちず&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ですか（↗）。そちらです。（地图？在那儿。）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;これは　パソコンです。（那个是个人电脑）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;パソコンですか（↘）。（是个人电脑啊）&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h3 id=&#34;英文字母&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#英文字母&#34;&gt;#&lt;/a&gt; 英文字母&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;A a&lt;/th&gt;
-&lt;th&gt;エー&lt;/th&gt;
-&lt;th&gt;B b&lt;/th&gt;
-&lt;th&gt;ビー&lt;/th&gt;
-&lt;th&gt;C c&lt;/th&gt;
-&lt;th&gt;シー&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;D d&lt;/td&gt;
-&lt;td&gt;ディー&lt;/td&gt;
-&lt;td&gt;E e&lt;/td&gt;
-&lt;td&gt;イー&lt;/td&gt;
-&lt;td&gt;F f&lt;/td&gt;
-&lt;td&gt;エフ&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;G g&lt;/td&gt;
-&lt;td&gt;ジー&lt;/td&gt;
-&lt;td&gt;H h&lt;/td&gt;
-&lt;td&gt;エイチ／エッチ&lt;/td&gt;
-&lt;td&gt;I i&lt;/td&gt;
-&lt;td&gt;アイ&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;J j&lt;/td&gt;
-&lt;td&gt;ジェイ&lt;/td&gt;
-&lt;td&gt;K k&lt;/td&gt;
-&lt;td&gt;ケー&lt;/td&gt;
-&lt;td&gt;L l&lt;/td&gt;
-&lt;td&gt;エル&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;M m&lt;/td&gt;
-&lt;td&gt;エム&lt;/td&gt;
-&lt;td&gt;N n&lt;/td&gt;
-&lt;td&gt;エヌ&lt;/td&gt;
-&lt;td&gt;O o&lt;/td&gt;
-&lt;td&gt;オー&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;P p&lt;/td&gt;
-&lt;td&gt;ピー&lt;/td&gt;
-&lt;td&gt;Q q&lt;/td&gt;
-&lt;td&gt;キュー&lt;/td&gt;
-&lt;td&gt;R r&lt;/td&gt;
-&lt;td&gt;アール&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;S s&lt;/td&gt;
-&lt;td&gt;エス&lt;/td&gt;
-&lt;td&gt;T t&lt;/td&gt;
-&lt;td&gt;ティー&lt;/td&gt;
-&lt;td&gt;U u&lt;/td&gt;
-&lt;td&gt;ユー&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;V v&lt;/td&gt;
-&lt;td&gt;ブー&lt;/td&gt;
-&lt;td&gt;W w&lt;/td&gt;
-&lt;td&gt;ダブリュー&lt;/td&gt;
-&lt;td&gt;X x&lt;/td&gt;
-&lt;td&gt;エックス&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Y y&lt;/td&gt;
-&lt;td&gt;ワイ&lt;/td&gt;
-&lt;td&gt;Z z&lt;/td&gt;
-&lt;td&gt;ゼット／ズィー&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;第4课-部屋へやに-机つくえと-いすが-あります&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第4课-部屋へやに-机つくえと-いすが-あります&#34;&gt;#&lt;/a&gt; 第④课  &lt;ruby&gt;部屋&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;へや&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; に　 &lt;ruby&gt;机&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;つくえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; と　いすが　あります&lt;/h2&gt;
-&lt;h3 id=&#34;语法解释-4&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#语法解释-4&#34;&gt;#&lt;/a&gt; 语法解释&lt;/h3&gt;
-&lt;h4 id=&#34;あります-和-います&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#あります-和-います&#34;&gt;#&lt;/a&gt; あります　和　います&lt;/h4&gt;
-&lt;p&gt;两者都表示事物存在， &lt;code&gt;あります&lt;/code&gt;  表示不具有意识的死物， &lt;code&gt;います&lt;/code&gt;  表示动物或昆虫&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;名「场所」  &lt;code&gt;に&lt;/code&gt; 　名「物／人」 &lt;code&gt;が&lt;/code&gt; 　 &lt;code&gt;あります／います&lt;/code&gt; ：表示  &lt;code&gt;~有~&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;p&gt;&lt;ruby&gt;部屋&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;へや&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; に　&lt;ruby&gt;机&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;つくえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; が　あります。（房间里有桌子）&lt;/p&gt;
-&lt;p&gt;&lt;ruby&gt;公園&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;こうえん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; に　 &lt;ruby&gt;子供&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;こども&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; が　います。（公园里有小孩）&lt;/p&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;ul&gt;
-&lt;li&gt;名「物／人」  &lt;code&gt;は&lt;/code&gt; 　名「场所」 &lt;code&gt;に&lt;/code&gt; 　 &lt;code&gt;あります／います&lt;/code&gt; ：表示  &lt;code&gt;~在~&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;p&gt;いす　は　&lt;ruby&gt;部屋&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;へや&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; に　あります。（椅子在房间里）&lt;/p&gt;
-&lt;p&gt;&lt;ruby&gt;子供&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;こども&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　は　 &lt;ruby&gt;公園&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;こうえん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; に　います。（小孩在公园）&lt;/p&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;ul&gt;
-&lt;li&gt;疑问句&lt;/li&gt;
-&lt;/ul&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;p&gt;&lt;ruby&gt;小野&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;おの&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さんの　 &lt;ruby&gt;家&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;いえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; は　どごに　ありますか。（小野女士的家在哪里）&lt;/p&gt;
-&lt;p&gt;&lt;ruby&gt;林&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;はやし&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; さんは　どごに　いますか。（林先生在哪）&lt;/p&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;名と名并列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#名と名并列&#34;&gt;#&lt;/a&gt; 「名」と「名」「并列」&lt;/h4&gt;
-&lt;p&gt;意思和汉语的「和」相近&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;時計&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;とけい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　 &lt;code&gt;と&lt;/code&gt; 　 &lt;ruby&gt;眼鏡&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;めがね&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;。（表和眼镜）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;上うえ-下した-前まえ-後うしろ-隣となり-中なか-外そと&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#上うえ-下した-前まえ-後うしろ-隣となり-中なか-外そと&#34;&gt;#&lt;/a&gt; &lt;ruby&gt;上&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;うえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;下&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;した&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;前&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;まえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;後&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;うし&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ろ／ &lt;ruby&gt;隣&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;となり&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;中&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;なか&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;外&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;そと&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;&lt;/h4&gt;
-&lt;p&gt;意为 上／下／前／后／旁边／里面／外面。&lt;/p&gt;
-&lt;p&gt;表示具体位置时，用 「名词」+  &lt;code&gt;の&lt;/code&gt;  + &lt;ruby&gt;上&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;うえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;下&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;した&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;前&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;まえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;後&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;うし&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; ろ／ &lt;ruby&gt;隣&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;となり&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;中&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;なか&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ &lt;ruby&gt;外&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;そと&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;机&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;つくえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　の　&lt;ruby&gt;上&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;うえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;　に　 &lt;ruby&gt;猫&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;ねこ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; が　います。（桌子上有一只猫）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;ねné确认&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ねné确认&#34;&gt;#&lt;/a&gt; &lt;ruby&gt;ね&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;né&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;「确认」&lt;/h4&gt;
-&lt;p&gt;一般用于结尾，表示对某件事的确认形式的提问，或者想要征求某人同意。&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;あのこに　 &lt;ruby&gt;犬&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;いぬ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; が　います &lt;code&gt;ね&lt;/code&gt; 。（那儿有一只狗啊。）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;疑问词も动否定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#疑问词も动否定&#34;&gt;#&lt;/a&gt; 「疑问词」+ も＋「动」（否定）&lt;/h4&gt;
-&lt;p&gt;表示全面否定&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;教室&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;きょうしつ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; に　 &lt;code&gt;だれ&lt;/code&gt; も　 &lt;code&gt;いません&lt;/code&gt; 。（教师里什么都没有）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h3 id=&#34;词语讲解-4&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#词语讲解-4&#34;&gt;#&lt;/a&gt; 词语讲解&lt;/h3&gt;
-&lt;h4 id=&#34;上うえ的范围&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#上うえ的范围&#34;&gt;#&lt;/a&gt; &lt;ruby&gt;上&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;うえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; 的范围&lt;/h4&gt;
-&lt;p&gt;日语中 &lt;ruby&gt;上&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;うえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; 所表示的范围只有垂直上方，不包括其他位置关系。&lt;/p&gt;
-&lt;p&gt;如果要表示墙上这种关系（墙表面），一般用  &lt;code&gt;に&lt;/code&gt;&lt;/p&gt;
-&lt;details class=&#34;info&#34;&gt;&lt;summary&gt;示例：&lt;/summary&gt;&lt;div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;ruby&gt;壁&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;かべ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; に　スイッチが　あります。（墙上有开关）👍&lt;/li&gt;
-&lt;li&gt;&lt;ruby&gt;壁&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;かべ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; の　&lt;ruby&gt;上&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;うえ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; に　スイッチが　あります。👎&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/details&gt;
-&lt;h4 id=&#34;ええと&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ええと&#34;&gt;#&lt;/a&gt; ええと&lt;/h4&gt;
-&lt;p&gt;意为：那个...。语气词，一般表示还没想好说啥的一种回应。&lt;/p&gt;
-&lt;h4 id=&#34;ご-家族かぞくご-兄弟きょうだいご-両親りょうしん礼貌用语&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ご-家族かぞくご-兄弟きょうだいご-両親りょうしん礼貌用语&#34;&gt;#&lt;/a&gt; ご &lt;ruby&gt;家族&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;かぞく&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ご &lt;ruby&gt;兄弟&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;きょうだい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;／ご &lt;ruby&gt;両親&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;りょうしん&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;「礼貌用语」&lt;/h4&gt;
-&lt;p&gt;表示对别人的 「家人／兄弟／父母」 的一个尊称。加上  &lt;code&gt;ご&lt;/code&gt;  显得更加礼貌&lt;/p&gt;
-&lt;h4 id=&#34;兄弟きょうだい&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#兄弟きょうだい&#34;&gt;#&lt;/a&gt; &lt;ruby&gt;兄弟&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;きょうだい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;&lt;/h4&gt;
-&lt;p&gt;日语里的 &lt;ruby&gt;兄弟&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;きょうだい&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt; 仅仅指代有亲缘关系的「兄弟／姐妹／兄妹／姐弟」&lt;/p&gt;
 </content>
         <category term="日语" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/" />
         <category term="学习笔记" scheme="https://allengx.gitee.io/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/study/" />
