@@ -3,8 +3,8 @@
     <channel>
         <title>鑫酱</title>
         <subtitle>笔记本</subtitle>
-        <icon>https://allengx.gitee.io/images/favicon.ico</icon>
-        <link>https://allengx.gitee.io</link>
+        <icon>https://allengx.github.io/images/favicon.ico</icon>
+        <link>https://allengx.github.io</link>
         <author>
           <name>鑫酱(●&#39;◡&#39;●)</name>
         </author>
@@ -19,14 +19,14 @@
         <category term="Python" />
         <category term="游戏" />
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E5%8D%81%E3%80%81Geometry%EF%BC%88%E4%B8%8A%EF%BC%89/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E5%8D%81%E3%80%81Geometry%EF%BC%88%E4%B8%8A%EF%BC%89/</guid>
             <title>十、Geometry（上）</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E5%8D%81%E3%80%81Geometry%EF%BC%88%E4%B8%8A%EF%BC%89/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E5%8D%81%E3%80%81Geometry%EF%BC%88%E4%B8%8A%EF%BC%89/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Fri, 15 Jan 2021 18:00:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -123,14 +123,14 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E4%B9%9D%E3%80%81Shading%EF%BC%88%E4%B8%8B%EF%BC%89%E2%80%94%E2%80%94Texture%20Mapping%20Cont/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E4%B9%9D%E3%80%81Shading%EF%BC%88%E4%B8%8B%EF%BC%89%E2%80%94%E2%80%94Texture%20Mapping%20Cont/</guid>
             <title>九、Shading（下）——Texture Mapping Cont</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E4%B9%9D%E3%80%81Shading%EF%BC%88%E4%B8%8B%EF%BC%89%E2%80%94%E2%80%94Texture%20Mapping%20Cont/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E4%B9%9D%E3%80%81Shading%EF%BC%88%E4%B8%8B%EF%BC%89%E2%80%94%E2%80%94Texture%20Mapping%20Cont/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Fri, 15 Jan 2021 16:42:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -385,14 +385,14 @@ c-16-25.333-24-45-24-59z&#39;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/spa
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E5%85%AB%E3%80%81Shading%EF%BC%88%E4%B8%AD%EF%BC%89%E2%80%94%E2%80%94Pipeline%20&amp;&amp;%20Texture%20Mapping/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E5%85%AB%E3%80%81Shading%EF%BC%88%E4%B8%AD%EF%BC%89%E2%80%94%E2%80%94Pipeline%20&amp;&amp;%20Texture%20Mapping/</guid>
             <title>八、Shading（中）——Pipeline &amp;&amp; Texture Mapping</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E5%85%AB%E3%80%81Shading%EF%BC%88%E4%B8%AD%EF%BC%89%E2%80%94%E2%80%94Pipeline%20&amp;&amp;%20Texture%20Mapping/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E5%85%AB%E3%80%81Shading%EF%BC%88%E4%B8%AD%EF%BC%89%E2%80%94%E2%80%94Pipeline%20&amp;&amp;%20Texture%20Mapping/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Tue, 05 Jan 2021 17:00:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -480,14 +480,14 @@ c-16-25.333-24-45-24-59z&#39;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/spa
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E4%B8%83%E3%80%81Shading%EF%BC%88%E4%B8%8A%EF%BC%89%E2%80%94%E2%80%94Light/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E4%B8%83%E3%80%81Shading%EF%BC%88%E4%B8%8A%EF%BC%89%E2%80%94%E2%80%94Light/</guid>
             <title>七、Shading（上）——Light</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E4%B8%83%E3%80%81Shading%EF%BC%88%E4%B8%8A%EF%BC%89%E2%80%94%E2%80%94Light/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E4%B8%83%E3%80%81Shading%EF%BC%88%E4%B8%8A%EF%BC%89%E2%80%94%E2%80%94Light/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Mon, 04 Jan 2021 19:43:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -596,14 +596,14 @@ c-16-25.333-24-45-24-59z&#39;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/spa
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E5%85%AD%E3%80%81Rasterization%EF%BC%88%E4%B8%8B%EF%BC%89%E2%80%94%E2%80%94Depth%20buffer/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E5%85%AD%E3%80%81Rasterization%EF%BC%88%E4%B8%8B%EF%BC%89%E2%80%94%E2%80%94Depth%20buffer/</guid>
             <title>六、Rasterization（下）——Z-Buffering</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E5%85%AD%E3%80%81Rasterization%EF%BC%88%E4%B8%8B%EF%BC%89%E2%80%94%E2%80%94Depth%20buffer/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E5%85%AD%E3%80%81Rasterization%EF%BC%88%E4%B8%8B%EF%BC%89%E2%80%94%E2%80%94Depth%20buffer/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Mon, 04 Jan 2021 17:18:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -625,14 +625,14 @@ c-16-25.333-24-45-24-59z&#39;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/spa
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E4%BA%94%E3%80%81Rasterization%EF%BC%88%E4%B8%AD%EF%BC%89%E2%80%94%E2%80%94Antialiasing/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E4%BA%94%E3%80%81Rasterization%EF%BC%88%E4%B8%AD%EF%BC%89%E2%80%94%E2%80%94Antialiasing/</guid>
             <title>五、Rasterization（中）——Antialiasing</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E4%BA%94%E3%80%81Rasterization%EF%BC%88%E4%B8%AD%EF%BC%89%E2%80%94%E2%80%94Antialiasing/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E4%BA%94%E3%80%81Rasterization%EF%BC%88%E4%B8%AD%EF%BC%89%E2%80%94%E2%80%94Antialiasing/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Sun, 03 Jan 2021 12:32:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -769,14 +769,14 @@ e^{ix} = \cos x + i\sin x
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E5%9B%9B%E3%80%81Rasterization%EF%BC%88%E4%B8%8A%EF%BC%89%E2%80%94%E2%80%94Triangles/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E5%9B%9B%E3%80%81Rasterization%EF%BC%88%E4%B8%8A%EF%BC%89%E2%80%94%E2%80%94Triangles/</guid>
             <title>四、Rasterization（上）——Triangles</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E5%9B%9B%E3%80%81Rasterization%EF%BC%88%E4%B8%8A%EF%BC%89%E2%80%94%E2%80%94Triangles/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E5%9B%9B%E3%80%81Rasterization%EF%BC%88%E4%B8%8A%EF%BC%89%E2%80%94%E2%80%94Triangles/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Sat, 02 Jan 2021 20:50:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -867,14 +867,14 @@ e^{ix} = \cos x + i\sin x
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E4%B8%89%E3%80%81Transformation%20Cont/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E4%B8%89%E3%80%81Transformation%20Cont/</guid>
             <title>三、Transformation Cont</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E4%B8%89%E3%80%81Transformation%20Cont/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E4%B8%89%E3%80%81Transformation%20Cont/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Thu, 31 Dec 2020 16:41:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -1598,14 +1598,14 @@ n &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E4%BA%8C%E3%80%81Transformation/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E4%BA%8C%E3%80%81Transformation/</guid>
             <title>二、Transformation</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E4%BA%8C%E3%80%81Transformation/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E4%BA%8C%E3%80%81Transformation/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Mon, 28 Dec 2020 16:40:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -1952,14 +1952,14 @@ y \\
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E4%B8%80%E3%80%81Linear%20Algebra/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E4%B8%80%E3%80%81Linear%20Algebra/</guid>
             <title>一、Linear Algebra</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E4%B8%80%E3%80%81Linear%20Algebra/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E4%B8%80%E3%80%81Linear%20Algebra/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Sun, 27 Dec 2020 17:32:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理，涉及坐标内容统一用右手坐标系&lt;/p&gt;
@@ -3024,14 +3024,14 @@ c-16-25.333-24-45-24-59z&#39;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/spa
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Game101/%E9%9B%B6%E3%80%81latex%E5%85%AC%E5%BC%8F%E8%AF%AD%E6%B3%95/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Game101/%E9%9B%B6%E3%80%81latex%E5%85%AC%E5%BC%8F%E8%AF%AD%E6%B3%95/</guid>
             <title>零、latex公式语法</title>
-            <link>https://allengx.gitee.io/computer-science/study/Game101/%E9%9B%B6%E3%80%81latex%E5%85%AC%E5%BC%8F%E8%AF%AD%E6%B3%95/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Game101——现代计算机图形学" scheme="https://allengx.gitee.io/categories/computer-science/study/Game101/" />
-            <category term="图形学" scheme="https://allengx.gitee.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
-            <category term="线性代数" scheme="https://allengx.gitee.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
+            <link>https://allengx.github.io/computer-science/study/Game101/%E9%9B%B6%E3%80%81latex%E5%85%AC%E5%BC%8F%E8%AF%AD%E6%B3%95/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Game101——现代计算机图形学" scheme="https://allengx.github.io/categories/computer-science/study/Game101/" />
+            <category term="图形学" scheme="https://allengx.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" />
+            <category term="线性代数" scheme="https://allengx.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" />
             <pubDate>Sun, 27 Dec 2020 12:19:25 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
@@ -3182,13 +3182,13 @@ x_3 &amp;amp; y_3 &amp;amp; z_3
 &lt;figure class=&#34;highlight latex&#34;&gt;&lt;figcaption data-lang=&#34;LaTeX&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function selector&#34;&gt;\begin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;bmatrix&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;0 &lt;span class=&#34;token punctuation&#34;&gt;&amp;amp;&lt;/span&gt; -1 &lt;span class=&#34;token function selector&#34;&gt;\\&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;1 &lt;span class=&#34;token punctuation&#34;&gt;&amp;amp;&lt;/span&gt; 0 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function selector&#34;&gt;\end&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;bmatrix&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%83%E3%80%81%E9%81%97%E7%95%99%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%83%E3%80%81%E9%81%97%E7%95%99%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0/</guid>
             <title>七、遗留系统的微服务改造</title>
-            <link>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%83%E3%80%81%E9%81%97%E7%95%99%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
-            <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+            <link>https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%83%E3%80%81%E9%81%97%E7%95%99%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="微服务架构阅读笔记" scheme="https://allengx.github.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+            <category term="微服务" scheme="https://allengx.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
             <pubDate>Fri, 25 Dec 2020 15:35:00 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
@@ -3279,13 +3279,13 @@ x_3 &amp;amp; y_3 &amp;amp; z_3
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%85%AD%E3%80%81%E5%9F%BA%E4%BA%8E%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%8B%EF%BC%89/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%85%AD%E3%80%81%E5%9F%BA%E4%BA%8E%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%8B%EF%BC%89/</guid>
             <title>六、基于参考模型的实践（下）</title>
-            <link>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%85%AD%E3%80%81%E5%9F%BA%E4%BA%8E%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%8B%EF%BC%89/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
-            <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+            <link>https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%85%AD%E3%80%81%E5%9F%BA%E4%BA%8E%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%8B%EF%BC%89/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="微服务架构阅读笔记" scheme="https://allengx.github.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+            <category term="微服务" scheme="https://allengx.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
             <pubDate>Fri, 25 Dec 2020 11:34:25 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
@@ -3364,13 +3364,13 @@ x_3 &amp;amp; y_3 &amp;amp; z_3
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%94%E3%80%81%E5%9F%BA%E4%BA%8E%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E8%B7%B5/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%94%E3%80%81%E5%9F%BA%E4%BA%8E%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E8%B7%B5/</guid>
             <title>五、基于参考模型的实践（上）</title>
-            <link>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%94%E3%80%81%E5%9F%BA%E4%BA%8E%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E8%B7%B5/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
-            <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+            <link>https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%94%E3%80%81%E5%9F%BA%E4%BA%8E%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E8%B7%B5/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="微服务架构阅读笔记" scheme="https://allengx.github.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+            <category term="微服务" scheme="https://allengx.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
             <pubDate>Fri, 18 Dec 2020 17:34:25 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
@@ -3525,13 +3525,13 @@ x_3 &amp;amp; y_3 &amp;amp; z_3
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%9B%9B%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%9B%9B%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</guid>
             <title>四、微服务参考模型</title>
-            <link>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%9B%9B%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
-            <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+            <link>https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%9B%9B%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="微服务架构阅读笔记" scheme="https://allengx.github.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+            <category term="微服务" scheme="https://allengx.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
             <pubDate>Tue, 15 Dec 2020 17:46:25 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
@@ -3779,13 +3779,13 @@ x_3 &amp;amp; y_3 &amp;amp; z_3
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%89%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%89%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/</guid>
             <title>三、微服务关键技术</title>
-            <link>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%89%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
-            <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+            <link>https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%89%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="微服务架构阅读笔记" scheme="https://allengx.github.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+            <category term="微服务" scheme="https://allengx.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
             <pubDate>Thu, 10 Dec 2020 17:46:25 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
@@ -4179,13 +4179,13 @@ x_3 &amp;amp; y_3 &amp;amp; z_3
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%8C%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%8C%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/</guid>
             <title>二、微服务生态系统</title>
-            <link>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%8C%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
-            <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+            <link>https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%8C%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="微服务架构阅读笔记" scheme="https://allengx.github.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+            <category term="微服务" scheme="https://allengx.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
             <pubDate>Sat, 05 Dec 2020 10:46:25 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
@@ -4241,13 +4241,13 @@ x_3 &amp;amp; y_3 &amp;amp; z_3
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%80%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%BB%BC%E8%BF%B0/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%80%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%BB%BC%E8%BF%B0/</guid>
             <title>一、微服务架构综述</title>
-            <link>https://allengx.gitee.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%80%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%BB%BC%E8%BF%B0/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="微服务架构阅读笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
-            <category term="微服务" scheme="https://allengx.gitee.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
+            <link>https://allengx.github.io/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%B8%80%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%BB%BC%E8%BF%B0/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="微服务架构阅读笔记" scheme="https://allengx.github.io/categories/computer-science/study/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" />
+            <category term="微服务" scheme="https://allengx.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
             <pubDate>Tue, 01 Dec 2020 20:46:25 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
@@ -4289,13 +4289,13 @@ x_3 &amp;amp; y_3 &amp;amp; z_3
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/%E5%8D%81%E4%B8%89%E3%80%81%E5%9C%A8%E8%BE%B9%E7%95%8C%E5%A4%84%E6%80%9D%E8%80%83/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/%E5%8D%81%E4%B8%89%E3%80%81%E5%9C%A8%E8%BE%B9%E7%95%8C%E5%A4%84%E6%80%9D%E8%80%83/</guid>
             <title>十三、在边界处思考</title>
-            <link>https://allengx.gitee.io/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/%E5%8D%81%E4%B8%89%E3%80%81%E5%9C%A8%E8%BE%B9%E7%95%8C%E5%A4%84%E6%80%9D%E8%80%83/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Python「工匠」" scheme="https://allengx.gitee.io/categories/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/" />
-            <category term="Python「工匠」" scheme="https://allengx.gitee.io/tags/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/" />
+            <link>https://allengx.github.io/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/%E5%8D%81%E4%B8%89%E3%80%81%E5%9C%A8%E8%BE%B9%E7%95%8C%E5%A4%84%E6%80%9D%E8%80%83/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Python「工匠」" scheme="https://allengx.github.io/categories/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/" />
+            <category term="Python「工匠」" scheme="https://allengx.github.io/tags/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/" />
             <pubDate>Sat, 14 Nov 2020 13:43:34 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
@@ -4328,13 +4328,13 @@ x_3 &amp;amp; y_3 &amp;amp; z_3
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://allengx.gitee.io/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/%E5%8D%81%E4%BA%8C%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8E%9F%E5%88%99/</guid>
+            <guid isPermalink="true">https://allengx.github.io/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/%E5%8D%81%E4%BA%8C%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8E%9F%E5%88%99/</guid>
             <title>十二、面向对象代码的原则</title>
-            <link>https://allengx.gitee.io/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/%E5%8D%81%E4%BA%8C%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8E%9F%E5%88%99/</link>
-            <category term="计算机科学" scheme="https://allengx.gitee.io/categories/computer-science/" />
-            <category term="学习笔记" scheme="https://allengx.gitee.io/categories/computer-science/study/" />
-            <category term="Python「工匠」" scheme="https://allengx.gitee.io/categories/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/" />
-            <category term="Python「工匠」" scheme="https://allengx.gitee.io/tags/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/" />
+            <link>https://allengx.github.io/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/%E5%8D%81%E4%BA%8C%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8E%9F%E5%88%99/</link>
+            <category term="计算机科学" scheme="https://allengx.github.io/categories/computer-science/" />
+            <category term="学习笔记" scheme="https://allengx.github.io/categories/computer-science/study/" />
+            <category term="Python「工匠」" scheme="https://allengx.github.io/categories/computer-science/study/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/" />
+            <category term="Python「工匠」" scheme="https://allengx.github.io/tags/Python%E3%80%8C%E5%B7%A5%E5%8C%A0%E3%80%8D/" />
             <pubDate>Sat, 14 Nov 2020 11:24:34 +0800</pubDate>
             <description><![CDATA[ &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;以下为个人学习笔记整理&lt;/p&gt;
